@@ -1,0 +1,102 @@
+# 1 "../MCAL/Register/Register.cpp"
+# 1 "D:\\Embeded Course\\part2\\projects\\cpp\\sdk\\sdk\\Debug//"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "../MCAL/Register/Register.cpp"
+# 9 "../MCAL/Register/Register.cpp"
+# 1 "../MCAL/Register/Register.h" 1
+# 14 "../MCAL/Register/Register.h"
+# 1 "../MCAL/Register/../../UTILS/datatypes.h" 1
+# 12 "../MCAL/Register/../../UTILS/datatypes.h"
+typedef unsigned char U8;
+typedef unsigned short int U16;
+typedef unsigned long int U32;
+
+typedef signed char S8;
+typedef signed short int S16;
+typedef signed long int S32;
+
+typedef struct{
+ U8 port_base;
+ U8 pin_no;
+}PinType;
+# 15 "../MCAL/Register/Register.h" 2
+# 1 "../MCAL/Register/../../UTILS/basicmacros.h" 1
+# 16 "../MCAL/Register/Register.h" 2
+
+
+
+
+namespace MCAL{
+
+
+ class Register
+ {
+  private:
+   U8 adress;
+  public:
+   Register(U8 address);
+   void Write(U8 val);
+   void Write(U8 bit_index, bool val);
+   void Write(U8 startPin , U8 endPin, U8 val);
+
+   void Read(U8 *val);
+   void Read(U8 bit_index, U8 * val);
+   void Read(U8 startPin , U8 endPin, U8 * val);
+
+ };
+}
+# 10 "../MCAL/Register/Register.cpp" 2
+
+namespace MCAL{
+
+ Register::Register(U8 address){
+
+  this->adress = address ;
+ }
+
+ void Register::Write(U8 val){
+
+  (*(volatile U8 *const)this->adress) = val;
+ }
+
+ void Register::Write(U8 bit_index, bool val){
+  if(bit_index>=0&&bit_index<8){
+   if (val){
+    ((*(volatile U8 *const)this->adress)|=(1<<bit_index));
+   }else{
+    ((*(volatile U8 *const)this->adress)&=~(1<<bit_index));
+   }
+  }
+ }
+
+ void Register::Write(U8 startPin , U8 endPin, U8 val){
+  U8 i ;
+  if(IS_PIN(startPin)&&IS_PIN(endPin)){
+   if (startPin > endPin){
+    startPin += endPin;
+    endPin = startPin - endPin ;
+    startPin -= endPin ;
+   }
+   for(i=startPin;i<=endPin;i++){
+    if(((val&(1<<i))>>i)==0){
+     ((*(volatile U8 *const)this->adress)&=~(1<<i));
+    }else{
+     ((*(volatile U8 *const)this->adress)|=(1<<i));
+    }
+   }
+
+  }
+ }
+
+ void Register::Read(U8 * val){
+  *val = (*(volatile U8 *const)this->adress);
+ }
+
+ void Register::Read(U8 bit_index, U8 * val){
+  if(IS_PIN(bit_index)){
+   *val = (((*(volatile U8 *const)this->adress)&(1<<bit_index))>>bit_index);
+  }
+
+ }
+}
