@@ -2,7 +2,7 @@
  * AVRAtmega32_consts.h
  *
  * Created: 25/09/2018 11:51:46 PM
- *  Author: www
+ *  Author: Ramy Badr
  */ 
 
 
