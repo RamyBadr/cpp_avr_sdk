@@ -1,12 +1,4 @@
 /*
- * test1.cpp
- *
- * Created: 25/09/2018 08:38:56 PM
- *  Author: www
- */ 
-
-
-/*
  * test1
  *
  * Created: 23/09/2018 12:25:17 PM
