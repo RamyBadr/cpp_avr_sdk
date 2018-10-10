@@ -1,0 +1,1672 @@
+
+sdk_1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000918  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00000918  000009ac  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000038  00800060  00800060  000009ac  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000009ac  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00001078  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000100  00000000  00000000  00001100  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000024d5  00000000  00000000  00001200  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000072e  00000000  00000000  000036d5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000090a  00000000  00000000  00003e03  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000330  00000000  00000000  00004710  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000995  00000000  00000000  00004a40  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000fd0  00000000  00000000  000053d5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000090  00000000  00000000  000063a5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2b 00 	jmp	0x56	; 0x56 <__ctors_end>
+   4:	0c 94 ee 03 	jmp	0x7dc	; 0x7dc <__vector_1>
+   8:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+   c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  10:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  14:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  18:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  1c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  20:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  24:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  28:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  2c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  30:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  34:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  38:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  3c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  40:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  44:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  48:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  4c:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+  50:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__bad_interrupt>
+
+00000054 <__ctors_start>:
+  54:	19 04       	cpc	r1, r9
+
+00000056 <__ctors_end>:
+  56:	11 24       	eor	r1, r1
+  58:	1f be       	out	0x3f, r1	; 63
+  5a:	cf e5       	ldi	r28, 0x5F	; 95
+  5c:	d8 e0       	ldi	r29, 0x08	; 8
+  5e:	de bf       	out	0x3e, r29	; 62
+  60:	cd bf       	out	0x3d, r28	; 61
+
+00000062 <__do_copy_data>:
+  62:	10 e0       	ldi	r17, 0x00	; 0
+  64:	a0 e6       	ldi	r26, 0x60	; 96
+  66:	b0 e0       	ldi	r27, 0x00	; 0
+  68:	e8 e1       	ldi	r30, 0x18	; 24
+  6a:	f9 e0       	ldi	r31, 0x09	; 9
+  6c:	02 c0       	rjmp	.+4      	; 0x72 <__do_copy_data+0x10>
+  6e:	05 90       	lpm	r0, Z+
+  70:	0d 92       	st	X+, r0
+  72:	a0 36       	cpi	r26, 0x60	; 96
+  74:	b1 07       	cpc	r27, r17
+  76:	d9 f7       	brne	.-10     	; 0x6e <__do_copy_data+0xc>
+
+00000078 <__do_clear_bss>:
+  78:	10 e0       	ldi	r17, 0x00	; 0
+  7a:	a0 e6       	ldi	r26, 0x60	; 96
+  7c:	b0 e0       	ldi	r27, 0x00	; 0
+  7e:	01 c0       	rjmp	.+2      	; 0x82 <.do_clear_bss_start>
+
+00000080 <.do_clear_bss_loop>:
+  80:	1d 92       	st	X+, r1
+
+00000082 <.do_clear_bss_start>:
+  82:	a8 39       	cpi	r26, 0x98	; 152
+  84:	b1 07       	cpc	r27, r17
+  86:	e1 f7       	brne	.-8      	; 0x80 <.do_clear_bss_loop>
+
+00000088 <__do_global_ctors>:
+  88:	10 e0       	ldi	r17, 0x00	; 0
+  8a:	c6 e5       	ldi	r28, 0x56	; 86
+  8c:	d0 e0       	ldi	r29, 0x00	; 0
+  8e:	04 c0       	rjmp	.+8      	; 0x98 <__do_global_ctors+0x10>
+  90:	22 97       	sbiw	r28, 0x02	; 2
+  92:	fe 01       	movw	r30, r28
+  94:	0e 94 86 04 	call	0x90c	; 0x90c <__tablejump__>
+  98:	c4 35       	cpi	r28, 0x54	; 84
+  9a:	d1 07       	cpc	r29, r17
+  9c:	c9 f7       	brne	.-14     	; 0x90 <__do_global_ctors+0x8>
+  9e:	0e 94 70 03 	call	0x6e0	; 0x6e0 <main>
+  a2:	0c 94 8a 04 	jmp	0x914	; 0x914 <_exit>
+
+000000a6 <__bad_interrupt>:
+  a6:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000aa <_ZN4MCAL4Port6DirectENS_9DirectionE>:
+ */ 
+#include "GPIO.h"
+using namespace MCAL;
+namespace MCAL{
+	void Port::Direct(Direction dir){
+		if (dir==input){
+  aa:	66 23       	and	r22, r22
+  ac:	31 f4       	brne	.+12     	; 0xba <_ZN4MCAL4Port6DirectENS_9DirectionE+0x10>
+			this->dirReg->Write(0x00);
+  ae:	fc 01       	movw	r30, r24
+  b0:	80 81       	ld	r24, Z
+  b2:	91 81       	ldd	r25, Z+1	; 0x01
+  b4:	0e 94 a0 00 	call	0x140	; 0x140 <_ZN4MCAL8Register5WriteEh>
+  b8:	08 95       	ret
+		}else{
+			this->dirReg->Write(0xFF);
+  ba:	fc 01       	movw	r30, r24
+  bc:	80 81       	ld	r24, Z
+  be:	91 81       	ldd	r25, Z+1	; 0x01
+  c0:	6f ef       	ldi	r22, 0xFF	; 255
+  c2:	0e 94 a0 00 	call	0x140	; 0x140 <_ZN4MCAL8Register5WriteEh>
+  c6:	08 95       	ret
+
+000000c8 <_ZN4MCAL4Port6DirectEhNS_9DirectionE>:
+		}
+	}
+	void Port::Direct(U8 pin,Direction dir){
+		if (dir==input){
+  c8:	44 23       	and	r20, r20
+  ca:	31 f4       	brne	.+12     	; 0xd8 <_ZN4MCAL4Port6DirectEhNS_9DirectionE+0x10>
+			this->dirReg->Write(pin,dir);
+  cc:	fc 01       	movw	r30, r24
+  ce:	80 81       	ld	r24, Z
+  d0:	91 81       	ldd	r25, Z+1	; 0x01
+  d2:	0e 94 a5 00 	call	0x14a	; 0x14a <_ZN4MCAL8Register5WriteEhb>
+  d6:	08 95       	ret
+		}else{
+			this->dirReg->Write(pin,dir);
+  d8:	fc 01       	movw	r30, r24
+  da:	80 81       	ld	r24, Z
+  dc:	91 81       	ldd	r25, Z+1	; 0x01
+  de:	41 e0       	ldi	r20, 0x01	; 1
+  e0:	0e 94 a5 00 	call	0x14a	; 0x14a <_ZN4MCAL8Register5WriteEhb>
+  e4:	08 95       	ret
+
+000000e6 <_ZN4MCAL4Port5WriteEh>:
+		}
+	}
+	void Port::Write(U8 val){
+		this->outputReg->Write(val);
+  e6:	fc 01       	movw	r30, r24
+  e8:	84 81       	ldd	r24, Z+4	; 0x04
+  ea:	95 81       	ldd	r25, Z+5	; 0x05
+  ec:	0e 94 a0 00 	call	0x140	; 0x140 <_ZN4MCAL8Register5WriteEh>
+	}
+  f0:	08 95       	ret
+
+000000f2 <_ZN4MCAL4Port5WriteEhb>:
+	void Port::Write(U8 pin,bool val){
+		this->outputReg->Write(pin,val);
+  f2:	fc 01       	movw	r30, r24
+  f4:	84 81       	ldd	r24, Z+4	; 0x04
+  f6:	95 81       	ldd	r25, Z+5	; 0x05
+  f8:	0e 94 a5 00 	call	0x14a	; 0x14a <_ZN4MCAL8Register5WriteEhb>
+	}
+  fc:	08 95       	ret
+
+000000fe <_ZN4MCAL4Port6ToggleEv>:
+	
+	void Port::Toggle(){
+		this->outputReg->Toggle();
+  fe:	fc 01       	movw	r30, r24
+ 100:	84 81       	ldd	r24, Z+4	; 0x04
+ 102:	95 81       	ldd	r25, Z+5	; 0x05
+ 104:	0e 94 02 01 	call	0x204	; 0x204 <_ZN4MCAL8Register6ToggleEv>
+	}
+ 108:	08 95       	ret
+
+0000010a <_ZN4MCAL4Port6ToggleEh>:
+	void Port::Toggle(U8 bit_index){
+		this->outputReg->Toggle(bit_index);
+ 10a:	fc 01       	movw	r30, r24
+ 10c:	84 81       	ldd	r24, Z+4	; 0x04
+ 10e:	95 81       	ldd	r25, Z+5	; 0x05
+ 110:	0e 94 09 01 	call	0x212	; 0x212 <_ZN4MCAL8Register6ToggleEh>
+	}
+ 114:	08 95       	ret
+
+00000116 <_ZN4MCAL4Port6ToggleEhh>:
+	void Port::Toggle(U8 start_bit,U8 end_bit){
+		this->outputReg->Toggle(start_bit,end_bit);
+ 116:	fc 01       	movw	r30, r24
+ 118:	84 81       	ldd	r24, Z+4	; 0x04
+ 11a:	95 81       	ldd	r25, Z+5	; 0x05
+ 11c:	0e 94 1b 01 	call	0x236	; 0x236 <_ZN4MCAL8Register6ToggleEhh>
+	}
+ 120:	08 95       	ret
+
+00000122 <_ZN4MCAL4Port4ReadEPh>:
+	
+	void Port::Read(U8 * val){
+		this->inputReg->Read(val);
+ 122:	fc 01       	movw	r30, r24
+ 124:	82 81       	ldd	r24, Z+2	; 0x02
+ 126:	93 81       	ldd	r25, Z+3	; 0x03
+ 128:	0e 94 37 01 	call	0x26e	; 0x26e <_ZN4MCAL8Register4ReadEPh>
+	}
+ 12c:	08 95       	ret
+
+0000012e <_ZN4MCAL4Port4ReadEhPh>:
+	void Port::Read(U8 bit_index, U8 * val){
+		this->inputReg->Read(bit_index,val);
+ 12e:	fc 01       	movw	r30, r24
+ 130:	82 81       	ldd	r24, Z+2	; 0x02
+ 132:	93 81       	ldd	r25, Z+3	; 0x03
+ 134:	0e 94 3e 01 	call	0x27c	; 0x27c <_ZN4MCAL8Register4ReadEhPh>
+	}
+ 138:	08 95       	ret
+
+0000013a <_ZN4MCAL8RegisterC1Eh>:
+namespace MCAL{
+	
+	Register::Register(U8 address)
+	{
+		//address validation goes here
+		this->address = address ;
+ 13a:	fc 01       	movw	r30, r24
+ 13c:	60 83       	st	Z, r22
+	}
+ 13e:	08 95       	ret
+
+00000140 <_ZN4MCAL8Register5WriteEh>:
+
+	void Register::Write(U8 val){
+		//val validation & address validation goes here
+		REG_GET(this->address) = val;
+ 140:	dc 01       	movw	r26, r24
+ 142:	ec 91       	ld	r30, X
+ 144:	f0 e0       	ldi	r31, 0x00	; 0
+ 146:	60 83       	st	Z, r22
+	}
+ 148:	08 95       	ret
+
+0000014a <_ZN4MCAL8Register5WriteEhb>:
+
+	void Register::Write(U8 bit_index, bool val){
+		
+		if(bit_index>=0&&bit_index<REG_WIDTH){
+ 14a:	68 30       	cpi	r22, 0x08	; 8
+ 14c:	10 f5       	brcc	.+68     	; 0x192 <_ZN4MCAL8Register5WriteEhb+0x48>
+			if (val){
+ 14e:	44 23       	and	r20, r20
+ 150:	81 f0       	breq	.+32     	; 0x172 <_ZN4MCAL8Register5WriteEhb+0x28>
+				SET_BIT((REG_GET(this->address)),bit_index);
+ 152:	dc 01       	movw	r26, r24
+ 154:	ec 91       	ld	r30, X
+ 156:	f0 e0       	ldi	r31, 0x00	; 0
+ 158:	20 81       	ld	r18, Z
+ 15a:	81 e0       	ldi	r24, 0x01	; 1
+ 15c:	90 e0       	ldi	r25, 0x00	; 0
+ 15e:	ac 01       	movw	r20, r24
+ 160:	02 c0       	rjmp	.+4      	; 0x166 <_ZN4MCAL8Register5WriteEhb+0x1c>
+ 162:	44 0f       	add	r20, r20
+ 164:	55 1f       	adc	r21, r21
+ 166:	6a 95       	dec	r22
+ 168:	e2 f7       	brpl	.-8      	; 0x162 <_ZN4MCAL8Register5WriteEhb+0x18>
+ 16a:	ba 01       	movw	r22, r20
+ 16c:	62 2b       	or	r22, r18
+ 16e:	60 83       	st	Z, r22
+ 170:	08 95       	ret
+			}else{
+				CLR_BIT(REG_GET(this->address),bit_index);
+ 172:	dc 01       	movw	r26, r24
+ 174:	ec 91       	ld	r30, X
+ 176:	f0 e0       	ldi	r31, 0x00	; 0
+ 178:	20 81       	ld	r18, Z
+ 17a:	81 e0       	ldi	r24, 0x01	; 1
+ 17c:	90 e0       	ldi	r25, 0x00	; 0
+ 17e:	ac 01       	movw	r20, r24
+ 180:	02 c0       	rjmp	.+4      	; 0x186 <_ZN4MCAL8Register5WriteEhb+0x3c>
+ 182:	44 0f       	add	r20, r20
+ 184:	55 1f       	adc	r21, r21
+ 186:	6a 95       	dec	r22
+ 188:	e2 f7       	brpl	.-8      	; 0x182 <_ZN4MCAL8Register5WriteEhb+0x38>
+ 18a:	ba 01       	movw	r22, r20
+ 18c:	60 95       	com	r22
+ 18e:	62 23       	and	r22, r18
+ 190:	60 83       	st	Z, r22
+ 192:	08 95       	ret
+
+00000194 <_ZN4MCAL8Register5WriteEhhh>:
+			}
+		}
+	}
+	
+	void Register::Write(U8 startPin , U8 endPin, U8 val){
+ 194:	0f 93       	push	r16
+ 196:	1f 93       	push	r17
+ 198:	cf 93       	push	r28
+ 19a:	df 93       	push	r29
+ 19c:	dc 01       	movw	r26, r24
+		U8 i ;
+		if(IS_PIN(startPin)&&IS_PIN(endPin)){
+ 19e:	68 30       	cpi	r22, 0x08	; 8
+ 1a0:	60 f5       	brcc	.+88     	; 0x1fa <_ZN4MCAL8Register5WriteEhhh+0x66>
+ 1a2:	48 30       	cpi	r20, 0x08	; 8
+ 1a4:	50 f5       	brcc	.+84     	; 0x1fa <_ZN4MCAL8Register5WriteEhhh+0x66>
+			if (startPin > endPin){
+ 1a6:	46 17       	cp	r20, r22
+ 1a8:	18 f4       	brcc	.+6      	; 0x1b0 <_ZN4MCAL8Register5WriteEhhh+0x1c>
+ 1aa:	86 2f       	mov	r24, r22
+				startPin += endPin;
+				endPin = startPin - endPin ;
+				startPin -= endPin ;
+ 1ac:	64 2f       	mov	r22, r20
+	void Register::Write(U8 startPin , U8 endPin, U8 val){
+		U8 i ;
+		if(IS_PIN(startPin)&&IS_PIN(endPin)){
+			if (startPin > endPin){
+				startPin += endPin;
+				endPin = startPin - endPin ;
+ 1ae:	48 2f       	mov	r20, r24
+				startPin -= endPin ;
+			}
+			for(i=startPin;i<=endPin;i++){
+				if(READ_BIT(val,i)==0){
+ 1b0:	c1 e0       	ldi	r28, 0x01	; 1
+ 1b2:	d0 e0       	ldi	r29, 0x00	; 0
+ 1b4:	02 2f       	mov	r16, r18
+ 1b6:	10 e0       	ldi	r17, 0x00	; 0
+ 1b8:	9e 01       	movw	r18, r28
+ 1ba:	06 2e       	mov	r0, r22
+ 1bc:	02 c0       	rjmp	.+4      	; 0x1c2 <_ZN4MCAL8Register5WriteEhhh+0x2e>
+ 1be:	22 0f       	add	r18, r18
+ 1c0:	33 1f       	adc	r19, r19
+ 1c2:	0a 94       	dec	r0
+ 1c4:	e2 f7       	brpl	.-8      	; 0x1be <_ZN4MCAL8Register5WriteEhhh+0x2a>
+ 1c6:	c9 01       	movw	r24, r18
+ 1c8:	80 23       	and	r24, r16
+ 1ca:	91 23       	and	r25, r17
+ 1cc:	06 2e       	mov	r0, r22
+ 1ce:	02 c0       	rjmp	.+4      	; 0x1d4 <_ZN4MCAL8Register5WriteEhhh+0x40>
+ 1d0:	95 95       	asr	r25
+ 1d2:	87 95       	ror	r24
+ 1d4:	0a 94       	dec	r0
+ 1d6:	e2 f7       	brpl	.-8      	; 0x1d0 <_ZN4MCAL8Register5WriteEhhh+0x3c>
+ 1d8:	00 97       	sbiw	r24, 0x00	; 0
+ 1da:	39 f4       	brne	.+14     	; 0x1ea <_ZN4MCAL8Register5WriteEhhh+0x56>
+					CLR_BIT(REG_GET(this->address),i);
+ 1dc:	ec 91       	ld	r30, X
+ 1de:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e0:	80 81       	ld	r24, Z
+ 1e2:	20 95       	com	r18
+ 1e4:	28 23       	and	r18, r24
+ 1e6:	20 83       	st	Z, r18
+ 1e8:	05 c0       	rjmp	.+10     	; 0x1f4 <_ZN4MCAL8Register5WriteEhhh+0x60>
+				}else{
+					SET_BIT(REG_GET(this->address),i);
+ 1ea:	ec 91       	ld	r30, X
+ 1ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 1ee:	80 81       	ld	r24, Z
+ 1f0:	28 2b       	or	r18, r24
+ 1f2:	20 83       	st	Z, r18
+			if (startPin > endPin){
+				startPin += endPin;
+				endPin = startPin - endPin ;
+				startPin -= endPin ;
+			}
+			for(i=startPin;i<=endPin;i++){
+ 1f4:	6f 5f       	subi	r22, 0xFF	; 255
+ 1f6:	46 17       	cp	r20, r22
+ 1f8:	f8 f6       	brcc	.-66     	; 0x1b8 <_ZN4MCAL8Register5WriteEhhh+0x24>
+					SET_BIT(REG_GET(this->address),i);
+				}
+			}
+			
+		}
+	}
+ 1fa:	df 91       	pop	r29
+ 1fc:	cf 91       	pop	r28
+ 1fe:	1f 91       	pop	r17
+ 200:	0f 91       	pop	r16
+ 202:	08 95       	ret
+
+00000204 <_ZN4MCAL8Register6ToggleEv>:
+	
+	
+	void Register::Toggle(){
+		REG_GET(this->address) ^= 0xFF;
+ 204:	dc 01       	movw	r26, r24
+ 206:	ec 91       	ld	r30, X
+ 208:	f0 e0       	ldi	r31, 0x00	; 0
+ 20a:	80 81       	ld	r24, Z
+ 20c:	80 95       	com	r24
+ 20e:	80 83       	st	Z, r24
+	}
+ 210:	08 95       	ret
+
+00000212 <_ZN4MCAL8Register6ToggleEh>:
+	void Register::Toggle(U8 bit_index){
+		if(IS_PIN(bit_index)){
+ 212:	68 30       	cpi	r22, 0x08	; 8
+ 214:	78 f4       	brcc	.+30     	; 0x234 <_ZN4MCAL8Register6ToggleEh+0x22>
+			TOGGLE_BIT(REG_GET(this->address),bit_index);
+ 216:	dc 01       	movw	r26, r24
+ 218:	ec 91       	ld	r30, X
+ 21a:	f0 e0       	ldi	r31, 0x00	; 0
+ 21c:	20 81       	ld	r18, Z
+ 21e:	81 e0       	ldi	r24, 0x01	; 1
+ 220:	90 e0       	ldi	r25, 0x00	; 0
+ 222:	ac 01       	movw	r20, r24
+ 224:	02 c0       	rjmp	.+4      	; 0x22a <_ZN4MCAL8Register6ToggleEh+0x18>
+ 226:	44 0f       	add	r20, r20
+ 228:	55 1f       	adc	r21, r21
+ 22a:	6a 95       	dec	r22
+ 22c:	e2 f7       	brpl	.-8      	; 0x226 <_ZN4MCAL8Register6ToggleEh+0x14>
+ 22e:	ba 01       	movw	r22, r20
+ 230:	62 27       	eor	r22, r18
+ 232:	60 83       	st	Z, r22
+ 234:	08 95       	ret
+
+00000236 <_ZN4MCAL8Register6ToggleEhh>:
+		}			
+	}
+	void Register::Toggle(U8 startPin , U8 endPin){
+ 236:	dc 01       	movw	r26, r24
+		U8 i ;
+		if(IS_PIN(startPin)&&IS_PIN(endPin)){
+ 238:	68 30       	cpi	r22, 0x08	; 8
+ 23a:	c0 f4       	brcc	.+48     	; 0x26c <_ZN4MCAL8Register6ToggleEhh+0x36>
+ 23c:	48 30       	cpi	r20, 0x08	; 8
+ 23e:	b0 f4       	brcc	.+44     	; 0x26c <_ZN4MCAL8Register6ToggleEhh+0x36>
+			if (startPin > endPin){
+ 240:	46 17       	cp	r20, r22
+ 242:	18 f4       	brcc	.+6      	; 0x24a <_ZN4MCAL8Register6ToggleEhh+0x14>
+ 244:	86 2f       	mov	r24, r22
+				startPin += endPin;
+				endPin = startPin - endPin ;
+				startPin -= endPin ;
+ 246:	64 2f       	mov	r22, r20
+	void Register::Toggle(U8 startPin , U8 endPin){
+		U8 i ;
+		if(IS_PIN(startPin)&&IS_PIN(endPin)){
+			if (startPin > endPin){
+				startPin += endPin;
+				endPin = startPin - endPin ;
+ 248:	48 2f       	mov	r20, r24
+				startPin -= endPin ;
+			}
+			for(i=startPin;i<=endPin;i++){
+				TOGGLE_BIT(REG_GET(this->address),i);
+ 24a:	21 e0       	ldi	r18, 0x01	; 1
+ 24c:	30 e0       	ldi	r19, 0x00	; 0
+ 24e:	ec 91       	ld	r30, X
+ 250:	f0 e0       	ldi	r31, 0x00	; 0
+ 252:	50 81       	ld	r21, Z
+ 254:	c9 01       	movw	r24, r18
+ 256:	06 2e       	mov	r0, r22
+ 258:	02 c0       	rjmp	.+4      	; 0x25e <_ZN4MCAL8Register6ToggleEhh+0x28>
+ 25a:	88 0f       	add	r24, r24
+ 25c:	99 1f       	adc	r25, r25
+ 25e:	0a 94       	dec	r0
+ 260:	e2 f7       	brpl	.-8      	; 0x25a <_ZN4MCAL8Register6ToggleEhh+0x24>
+ 262:	85 27       	eor	r24, r21
+ 264:	80 83       	st	Z, r24
+			if (startPin > endPin){
+				startPin += endPin;
+				endPin = startPin - endPin ;
+				startPin -= endPin ;
+			}
+			for(i=startPin;i<=endPin;i++){
+ 266:	6f 5f       	subi	r22, 0xFF	; 255
+ 268:	46 17       	cp	r20, r22
+ 26a:	88 f7       	brcc	.-30     	; 0x24e <_ZN4MCAL8Register6ToggleEhh+0x18>
+ 26c:	08 95       	ret
+
+0000026e <_ZN4MCAL8Register4ReadEPh>:
+			
+		}
+	}
+	
+	void Register::Read(U8 * val){
+		*val = REG_GET(this->address);
+ 26e:	dc 01       	movw	r26, r24
+ 270:	ec 91       	ld	r30, X
+ 272:	f0 e0       	ldi	r31, 0x00	; 0
+ 274:	80 81       	ld	r24, Z
+ 276:	fb 01       	movw	r30, r22
+ 278:	80 83       	st	Z, r24
+	}
+ 27a:	08 95       	ret
+
+0000027c <_ZN4MCAL8Register4ReadEhPh>:
+	
+	void Register::Read(U8 bit_index, U8 * val){
+		if(IS_PIN(bit_index)){
+ 27c:	68 30       	cpi	r22, 0x08	; 8
+ 27e:	b8 f4       	brcc	.+46     	; 0x2ae <_ZN4MCAL8Register4ReadEhPh+0x32>
+			*val = READ_BIT(REG_GET(this->address),bit_index);
+ 280:	dc 01       	movw	r26, r24
+ 282:	ec 91       	ld	r30, X
+ 284:	f0 e0       	ldi	r31, 0x00	; 0
+ 286:	20 81       	ld	r18, Z
+ 288:	81 e0       	ldi	r24, 0x01	; 1
+ 28a:	90 e0       	ldi	r25, 0x00	; 0
+ 28c:	06 2e       	mov	r0, r22
+ 28e:	02 c0       	rjmp	.+4      	; 0x294 <_ZN4MCAL8Register4ReadEhPh+0x18>
+ 290:	88 0f       	add	r24, r24
+ 292:	99 1f       	adc	r25, r25
+ 294:	0a 94       	dec	r0
+ 296:	e2 f7       	brpl	.-8      	; 0x290 <_ZN4MCAL8Register4ReadEhPh+0x14>
+ 298:	30 e0       	ldi	r19, 0x00	; 0
+ 29a:	82 23       	and	r24, r18
+ 29c:	93 23       	and	r25, r19
+ 29e:	fc 01       	movw	r30, r24
+ 2a0:	02 c0       	rjmp	.+4      	; 0x2a6 <_ZN4MCAL8Register4ReadEhPh+0x2a>
+ 2a2:	f5 95       	asr	r31
+ 2a4:	e7 95       	ror	r30
+ 2a6:	6a 95       	dec	r22
+ 2a8:	e2 f7       	brpl	.-8      	; 0x2a2 <_ZN4MCAL8Register4ReadEhPh+0x26>
+ 2aa:	da 01       	movw	r26, r20
+ 2ac:	ec 93       	st	X, r30
+ 2ae:	08 95       	ret
+
+000002b0 <_ZN4MCAL8Register4ReadEhhPh>:
+		}
+	}
+	
+	void Register::Read(U8 startPin , U8 endPin, U8 * val){
+ 2b0:	0f 93       	push	r16
+ 2b2:	1f 93       	push	r17
+ 2b4:	cf 93       	push	r28
+ 2b6:	df 93       	push	r29
+ 2b8:	ec 01       	movw	r28, r24
+ 2ba:	d9 01       	movw	r26, r18
+		U8 i;
+		if(IS_PIN(startPin)&&IS_PIN(endPin)){
+ 2bc:	68 30       	cpi	r22, 0x08	; 8
+ 2be:	80 f5       	brcc	.+96     	; 0x320 <_ZN4MCAL8Register4ReadEhhPh+0x70>
+ 2c0:	48 30       	cpi	r20, 0x08	; 8
+ 2c2:	70 f5       	brcc	.+92     	; 0x320 <_ZN4MCAL8Register4ReadEhhPh+0x70>
+			for (i=startPin;i<endPin;i++){
+ 2c4:	64 17       	cp	r22, r20
+ 2c6:	18 f5       	brcc	.+70     	; 0x30e <_ZN4MCAL8Register4ReadEhhPh+0x5e>
+ 2c8:	56 2f       	mov	r21, r22
+				if (READ_BIT(REG_GET(this->address),i)==0){
+ 2ca:	01 e0       	ldi	r16, 0x01	; 1
+ 2cc:	10 e0       	ldi	r17, 0x00	; 0
+ 2ce:	e8 81       	ld	r30, Y
+ 2d0:	f0 e0       	ldi	r31, 0x00	; 0
+ 2d2:	80 81       	ld	r24, Z
+ 2d4:	98 01       	movw	r18, r16
+ 2d6:	05 2e       	mov	r0, r21
+ 2d8:	02 c0       	rjmp	.+4      	; 0x2de <_ZN4MCAL8Register4ReadEhhPh+0x2e>
+ 2da:	22 0f       	add	r18, r18
+ 2dc:	33 1f       	adc	r19, r19
+ 2de:	0a 94       	dec	r0
+ 2e0:	e2 f7       	brpl	.-8      	; 0x2da <_ZN4MCAL8Register4ReadEhhPh+0x2a>
+ 2e2:	90 e0       	ldi	r25, 0x00	; 0
+ 2e4:	82 23       	and	r24, r18
+ 2e6:	93 23       	and	r25, r19
+ 2e8:	05 2e       	mov	r0, r21
+ 2ea:	02 c0       	rjmp	.+4      	; 0x2f0 <_ZN4MCAL8Register4ReadEhhPh+0x40>
+ 2ec:	95 95       	asr	r25
+ 2ee:	87 95       	ror	r24
+ 2f0:	0a 94       	dec	r0
+ 2f2:	e2 f7       	brpl	.-8      	; 0x2ec <_ZN4MCAL8Register4ReadEhhPh+0x3c>
+ 2f4:	00 97       	sbiw	r24, 0x00	; 0
+ 2f6:	29 f4       	brne	.+10     	; 0x302 <_ZN4MCAL8Register4ReadEhhPh+0x52>
+					CLR_BIT((*val),i);
+ 2f8:	20 95       	com	r18
+ 2fa:	8c 91       	ld	r24, X
+ 2fc:	28 23       	and	r18, r24
+ 2fe:	2c 93       	st	X, r18
+ 300:	03 c0       	rjmp	.+6      	; 0x308 <_ZN4MCAL8Register4ReadEhhPh+0x58>
+				}else{
+					SET_BIT((*val),i);
+ 302:	8c 91       	ld	r24, X
+ 304:	28 2b       	or	r18, r24
+ 306:	2c 93       	st	X, r18
+	}
+	
+	void Register::Read(U8 startPin , U8 endPin, U8 * val){
+		U8 i;
+		if(IS_PIN(startPin)&&IS_PIN(endPin)){
+			for (i=startPin;i<endPin;i++){
+ 308:	5f 5f       	subi	r21, 0xFF	; 255
+ 30a:	54 17       	cp	r21, r20
+ 30c:	00 f3       	brcs	.-64     	; 0x2ce <_ZN4MCAL8Register4ReadEhhPh+0x1e>
+					CLR_BIT((*val),i);
+				}else{
+					SET_BIT((*val),i);
+				}
+			}
+			(*val) >>= startPin ;
+ 30e:	8c 91       	ld	r24, X
+ 310:	90 e0       	ldi	r25, 0x00	; 0
+ 312:	9c 01       	movw	r18, r24
+ 314:	02 c0       	rjmp	.+4      	; 0x31a <_ZN4MCAL8Register4ReadEhhPh+0x6a>
+ 316:	35 95       	asr	r19
+ 318:	27 95       	ror	r18
+ 31a:	6a 95       	dec	r22
+ 31c:	e2 f7       	brpl	.-8      	; 0x316 <_ZN4MCAL8Register4ReadEhhPh+0x66>
+ 31e:	2c 93       	st	X, r18
+		}
+	}
+ 320:	df 91       	pop	r29
+ 322:	cf 91       	pop	r28
+ 324:	1f 91       	pop	r17
+ 326:	0f 91       	pop	r16
+ 328:	08 95       	ret
+
+0000032a <_ZN4MCAL11AvrAtmega3211GetInstanceEv>:
+
+using namespace MCAL;
+namespace MCAL{
+	class AvrAtmega32{
+		public:		
+			static AvrAtmega32* GetInstance(){
+ 32a:	2f 92       	push	r2
+ 32c:	3f 92       	push	r3
+ 32e:	4f 92       	push	r4
+ 330:	5f 92       	push	r5
+ 332:	6f 92       	push	r6
+ 334:	7f 92       	push	r7
+ 336:	8f 92       	push	r8
+ 338:	9f 92       	push	r9
+ 33a:	af 92       	push	r10
+ 33c:	bf 92       	push	r11
+ 33e:	cf 92       	push	r12
+ 340:	df 92       	push	r13
+ 342:	ef 92       	push	r14
+ 344:	ff 92       	push	r15
+ 346:	0f 93       	push	r16
+ 348:	1f 93       	push	r17
+ 34a:	cf 93       	push	r28
+ 34c:	df 93       	push	r29
+ 34e:	cd b7       	in	r28, 0x3d	; 61
+ 350:	de b7       	in	r29, 0x3e	; 62
+ 352:	a5 97       	sbiw	r28, 0x25	; 37
+ 354:	0f b6       	in	r0, 0x3f	; 63
+ 356:	f8 94       	cli
+ 358:	de bf       	out	0x3e, r29	; 62
+ 35a:	0f be       	out	0x3f, r0	; 63
+ 35c:	cd bf       	out	0x3d, r28	; 61
+				if (_instance==NULL){
+ 35e:	80 91 80 00 	lds	r24, 0x0080
+ 362:	90 91 81 00 	lds	r25, 0x0081
+ 366:	00 97       	sbiw	r24, 0x00	; 0
+ 368:	09 f0       	breq	.+2      	; 0x36c <_ZN4MCAL11AvrAtmega3211GetInstanceEv+0x42>
+ 36a:	9a c0       	rjmp	.+308    	; 0x4a0 <_ZN4MCAL11AvrAtmega3211GetInstanceEv+0x176>
+		Register * inputReg;
+		Register * outputReg;
+		protected:
+		public:
+		Port(Register * dir_reg,Register * input_reg, Register * output_reg){
+			this->dirReg = dir_reg;
+ 36c:	0f 2e       	mov	r0, r31
+ 36e:	fb e1       	ldi	r31, 0x1B	; 27
+ 370:	ef 2e       	mov	r14, r31
+ 372:	ff 24       	eor	r15, r15
+ 374:	f0 2d       	mov	r31, r0
+ 376:	ec 0e       	add	r14, r28
+ 378:	fd 1e       	adc	r15, r29
+ 37a:	fa 82       	std	Y+2, r15	; 0x02
+ 37c:	e9 82       	std	Y+1, r14	; 0x01
+			this->outputReg = output_reg;
+ 37e:	8e 01       	movw	r16, r28
+ 380:	06 5e       	subi	r16, 0xE6	; 230
+ 382:	1f 4f       	sbci	r17, 0xFF	; 255
+ 384:	1e 83       	std	Y+6, r17	; 0x06
+ 386:	0d 83       	std	Y+5, r16	; 0x05
+			this->inputReg = input_reg ;
+ 388:	0f 2e       	mov	r0, r31
+ 38a:	fc e1       	ldi	r31, 0x1C	; 28
+ 38c:	cf 2e       	mov	r12, r31
+ 38e:	dd 24       	eor	r13, r13
+ 390:	f0 2d       	mov	r31, r0
+ 392:	cc 0e       	add	r12, r28
+ 394:	dd 1e       	adc	r13, r29
+ 396:	dc 82       	std	Y+4, r13	; 0x04
+ 398:	cb 82       	std	Y+3, r12	; 0x03
+		Register * inputReg;
+		Register * outputReg;
+		protected:
+		public:
+		Port(Register * dir_reg,Register * input_reg, Register * output_reg){
+			this->dirReg = dir_reg;
+ 39a:	0f 2e       	mov	r0, r31
+ 39c:	fe e1       	ldi	r31, 0x1E	; 30
+ 39e:	8f 2e       	mov	r8, r31
+ 3a0:	99 24       	eor	r9, r9
+ 3a2:	f0 2d       	mov	r31, r0
+ 3a4:	8c 0e       	add	r8, r28
+ 3a6:	9d 1e       	adc	r9, r29
+ 3a8:	98 86       	std	Y+8, r9	; 0x08
+ 3aa:	8f 82       	std	Y+7, r8	; 0x07
+			this->outputReg = output_reg;
+ 3ac:	0f 2e       	mov	r0, r31
+ 3ae:	fd e1       	ldi	r31, 0x1D	; 29
+ 3b0:	af 2e       	mov	r10, r31
+ 3b2:	bb 24       	eor	r11, r11
+ 3b4:	f0 2d       	mov	r31, r0
+ 3b6:	ac 0e       	add	r10, r28
+ 3b8:	bd 1e       	adc	r11, r29
+ 3ba:	bc 86       	std	Y+12, r11	; 0x0c
+ 3bc:	ab 86       	std	Y+11, r10	; 0x0b
+			this->inputReg = input_reg ;
+ 3be:	0f 2e       	mov	r0, r31
+ 3c0:	ff e1       	ldi	r31, 0x1F	; 31
+ 3c2:	6f 2e       	mov	r6, r31
+ 3c4:	77 24       	eor	r7, r7
+ 3c6:	f0 2d       	mov	r31, r0
+ 3c8:	6c 0e       	add	r6, r28
+ 3ca:	7d 1e       	adc	r7, r29
+ 3cc:	7a 86       	std	Y+10, r7	; 0x0a
+ 3ce:	69 86       	std	Y+9, r6	; 0x09
+		Register * inputReg;
+		Register * outputReg;
+		protected:
+		public:
+		Port(Register * dir_reg,Register * input_reg, Register * output_reg){
+			this->dirReg = dir_reg;
+ 3d0:	0f 2e       	mov	r0, r31
+ 3d2:	f1 e2       	ldi	r31, 0x21	; 33
+ 3d4:	2f 2e       	mov	r2, r31
+ 3d6:	33 24       	eor	r3, r3
+ 3d8:	f0 2d       	mov	r31, r0
+ 3da:	2c 0e       	add	r2, r28
+ 3dc:	3d 1e       	adc	r3, r29
+ 3de:	3e 86       	std	Y+14, r3	; 0x0e
+ 3e0:	2d 86       	std	Y+13, r2	; 0x0d
+			this->outputReg = output_reg;
+ 3e2:	44 24       	eor	r4, r4
+ 3e4:	55 24       	eor	r5, r5
+ 3e6:	68 94       	set
+ 3e8:	45 f8       	bld	r4, 5
+ 3ea:	4c 0e       	add	r4, r28
+ 3ec:	5d 1e       	adc	r5, r29
+ 3ee:	5a 8a       	std	Y+18, r5	; 0x12
+ 3f0:	49 8a       	std	Y+17, r4	; 0x11
+			this->inputReg = input_reg ;
+ 3f2:	82 e2       	ldi	r24, 0x22	; 34
+ 3f4:	90 e0       	ldi	r25, 0x00	; 0
+ 3f6:	8c 0f       	add	r24, r28
+ 3f8:	9d 1f       	adc	r25, r29
+ 3fa:	98 8b       	std	Y+16, r25	; 0x10
+ 3fc:	8f 87       	std	Y+15, r24	; 0x0f
+		Register * inputReg;
+		Register * outputReg;
+		protected:
+		public:
+		Port(Register * dir_reg,Register * input_reg, Register * output_reg){
+			this->dirReg = dir_reg;
+ 3fe:	84 e2       	ldi	r24, 0x24	; 36
+ 400:	90 e0       	ldi	r25, 0x00	; 0
+ 402:	8c 0f       	add	r24, r28
+ 404:	9d 1f       	adc	r25, r29
+ 406:	9c 8b       	std	Y+20, r25	; 0x14
+ 408:	8b 8b       	std	Y+19, r24	; 0x13
+			this->outputReg = output_reg;
+ 40a:	83 e2       	ldi	r24, 0x23	; 35
+ 40c:	90 e0       	ldi	r25, 0x00	; 0
+ 40e:	8c 0f       	add	r24, r28
+ 410:	9d 1f       	adc	r25, r29
+ 412:	98 8f       	std	Y+24, r25	; 0x18
+ 414:	8f 8b       	std	Y+23, r24	; 0x17
+			this->inputReg = input_reg ;
+ 416:	85 e2       	ldi	r24, 0x25	; 37
+ 418:	90 e0       	ldi	r25, 0x00	; 0
+ 41a:	8c 0f       	add	r24, r28
+ 41c:	9d 1f       	adc	r25, r29
+ 41e:	9e 8b       	std	Y+22, r25	; 0x16
+ 420:	8d 8b       	std	Y+21, r24	; 0x15
+			AvrAtmega32():
+				StatusReg(0x5F),
+				_A_DDR(0x3A) , _A_Output(0x3B) , _A_Input(0x39),PortA(&(_A_DDR),&(_A_Input),&(_A_Output)),
+				_B_DDR(0x37) , _B_Output(0x38) , _B_Input(0x36),PortB(&(_B_DDR),&(_B_Input),&(_B_Output)),
+				_C_DDR(0x34) , _C_Output(0x35) , _C_Input(0x33),PortC(&(_C_DDR),&(_C_Input),&(_C_Output)),
+				_D_DDR(0x31) , _D_Output(0x32) , _D_Input(0x30),PortD(&(_D_DDR),&(_D_Input),&(_D_Output))
+ 422:	ce 01       	movw	r24, r28
+ 424:	49 96       	adiw	r24, 0x19	; 25
+ 426:	6f e5       	ldi	r22, 0x5F	; 95
+ 428:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 42c:	c8 01       	movw	r24, r16
+ 42e:	6b e3       	ldi	r22, 0x3B	; 59
+ 430:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 434:	c7 01       	movw	r24, r14
+ 436:	6a e3       	ldi	r22, 0x3A	; 58
+ 438:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 43c:	c6 01       	movw	r24, r12
+ 43e:	69 e3       	ldi	r22, 0x39	; 57
+ 440:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 444:	c5 01       	movw	r24, r10
+ 446:	68 e3       	ldi	r22, 0x38	; 56
+ 448:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 44c:	c4 01       	movw	r24, r8
+ 44e:	67 e3       	ldi	r22, 0x37	; 55
+ 450:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 454:	c3 01       	movw	r24, r6
+ 456:	66 e3       	ldi	r22, 0x36	; 54
+ 458:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 45c:	c2 01       	movw	r24, r4
+ 45e:	65 e3       	ldi	r22, 0x35	; 53
+ 460:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 464:	c1 01       	movw	r24, r2
+ 466:	64 e3       	ldi	r22, 0x34	; 52
+ 468:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 46c:	ce 01       	movw	r24, r28
+ 46e:	82 96       	adiw	r24, 0x22	; 34
+ 470:	63 e3       	ldi	r22, 0x33	; 51
+ 472:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 476:	ce 01       	movw	r24, r28
+ 478:	83 96       	adiw	r24, 0x23	; 35
+ 47a:	62 e3       	ldi	r22, 0x32	; 50
+ 47c:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 480:	ce 01       	movw	r24, r28
+ 482:	84 96       	adiw	r24, 0x24	; 36
+ 484:	61 e3       	ldi	r22, 0x31	; 49
+ 486:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 48a:	ce 01       	movw	r24, r28
+ 48c:	85 96       	adiw	r24, 0x25	; 37
+ 48e:	60 e3       	ldi	r22, 0x30	; 48
+ 490:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+			{
+				_instance =  this;
+ 494:	ce 01       	movw	r24, r28
+ 496:	01 96       	adiw	r24, 0x01	; 1
+ 498:	90 93 81 00 	sts	0x0081, r25
+ 49c:	80 93 80 00 	sts	0x0080, r24
+			static AvrAtmega32* GetInstance(){
+				if (_instance==NULL){
+					AvrAtmega32();
+				}
+				return (AvrAtmega32 *)_instance;
+			}
+ 4a0:	80 91 80 00 	lds	r24, 0x0080
+ 4a4:	90 91 81 00 	lds	r25, 0x0081
+ 4a8:	a5 96       	adiw	r28, 0x25	; 37
+ 4aa:	0f b6       	in	r0, 0x3f	; 63
+ 4ac:	f8 94       	cli
+ 4ae:	de bf       	out	0x3e, r29	; 62
+ 4b0:	0f be       	out	0x3f, r0	; 63
+ 4b2:	cd bf       	out	0x3d, r28	; 61
+ 4b4:	df 91       	pop	r29
+ 4b6:	cf 91       	pop	r28
+ 4b8:	1f 91       	pop	r17
+ 4ba:	0f 91       	pop	r16
+ 4bc:	ff 90       	pop	r15
+ 4be:	ef 90       	pop	r14
+ 4c0:	df 90       	pop	r13
+ 4c2:	cf 90       	pop	r12
+ 4c4:	bf 90       	pop	r11
+ 4c6:	af 90       	pop	r10
+ 4c8:	9f 90       	pop	r9
+ 4ca:	8f 90       	pop	r8
+ 4cc:	7f 90       	pop	r7
+ 4ce:	6f 90       	pop	r6
+ 4d0:	5f 90       	pop	r5
+ 4d2:	4f 90       	pop	r4
+ 4d4:	3f 90       	pop	r3
+ 4d6:	2f 90       	pop	r2
+ 4d8:	08 95       	ret
+
+000004da <_ZN4MCAL18InterruptControler12EnableGlobalEv>:
+				InterruptControler();
+			}
+			return _instance;
+		}
+		
+		void EnableGlobal(){
+ 4da:	2f 92       	push	r2
+ 4dc:	3f 92       	push	r3
+ 4de:	4f 92       	push	r4
+ 4e0:	5f 92       	push	r5
+ 4e2:	6f 92       	push	r6
+ 4e4:	7f 92       	push	r7
+ 4e6:	8f 92       	push	r8
+ 4e8:	9f 92       	push	r9
+ 4ea:	af 92       	push	r10
+ 4ec:	bf 92       	push	r11
+ 4ee:	cf 92       	push	r12
+ 4f0:	df 92       	push	r13
+ 4f2:	ef 92       	push	r14
+ 4f4:	ff 92       	push	r15
+ 4f6:	0f 93       	push	r16
+ 4f8:	1f 93       	push	r17
+ 4fa:	cf 93       	push	r28
+ 4fc:	df 93       	push	r29
+ 4fe:	cd b7       	in	r28, 0x3d	; 61
+ 500:	de b7       	in	r29, 0x3e	; 62
+ 502:	a5 97       	sbiw	r28, 0x25	; 37
+ 504:	0f b6       	in	r0, 0x3f	; 63
+ 506:	f8 94       	cli
+ 508:	de bf       	out	0x3e, r29	; 62
+ 50a:	0f be       	out	0x3f, r0	; 63
+ 50c:	cd bf       	out	0x3d, r28	; 61
+using namespace MCAL;
+namespace MCAL{
+	class AvrAtmega32{
+		public:		
+			static AvrAtmega32* GetInstance(){
+				if (_instance==NULL){
+ 50e:	80 91 80 00 	lds	r24, 0x0080
+ 512:	90 91 81 00 	lds	r25, 0x0081
+ 516:	00 97       	sbiw	r24, 0x00	; 0
+ 518:	09 f0       	breq	.+2      	; 0x51c <_ZN4MCAL18InterruptControler12EnableGlobalEv+0x42>
+ 51a:	9a c0       	rjmp	.+308    	; 0x650 <_ZN4MCAL18InterruptControler12EnableGlobalEv+0x176>
+		Register * inputReg;
+		Register * outputReg;
+		protected:
+		public:
+		Port(Register * dir_reg,Register * input_reg, Register * output_reg){
+			this->dirReg = dir_reg;
+ 51c:	0f 2e       	mov	r0, r31
+ 51e:	fb e1       	ldi	r31, 0x1B	; 27
+ 520:	ef 2e       	mov	r14, r31
+ 522:	ff 24       	eor	r15, r15
+ 524:	f0 2d       	mov	r31, r0
+ 526:	ec 0e       	add	r14, r28
+ 528:	fd 1e       	adc	r15, r29
+ 52a:	fa 82       	std	Y+2, r15	; 0x02
+ 52c:	e9 82       	std	Y+1, r14	; 0x01
+			this->outputReg = output_reg;
+ 52e:	8e 01       	movw	r16, r28
+ 530:	06 5e       	subi	r16, 0xE6	; 230
+ 532:	1f 4f       	sbci	r17, 0xFF	; 255
+ 534:	1e 83       	std	Y+6, r17	; 0x06
+ 536:	0d 83       	std	Y+5, r16	; 0x05
+			this->inputReg = input_reg ;
+ 538:	0f 2e       	mov	r0, r31
+ 53a:	fc e1       	ldi	r31, 0x1C	; 28
+ 53c:	cf 2e       	mov	r12, r31
+ 53e:	dd 24       	eor	r13, r13
+ 540:	f0 2d       	mov	r31, r0
+ 542:	cc 0e       	add	r12, r28
+ 544:	dd 1e       	adc	r13, r29
+ 546:	dc 82       	std	Y+4, r13	; 0x04
+ 548:	cb 82       	std	Y+3, r12	; 0x03
+		Register * inputReg;
+		Register * outputReg;
+		protected:
+		public:
+		Port(Register * dir_reg,Register * input_reg, Register * output_reg){
+			this->dirReg = dir_reg;
+ 54a:	0f 2e       	mov	r0, r31
+ 54c:	fe e1       	ldi	r31, 0x1E	; 30
+ 54e:	8f 2e       	mov	r8, r31
+ 550:	99 24       	eor	r9, r9
+ 552:	f0 2d       	mov	r31, r0
+ 554:	8c 0e       	add	r8, r28
+ 556:	9d 1e       	adc	r9, r29
+ 558:	98 86       	std	Y+8, r9	; 0x08
+ 55a:	8f 82       	std	Y+7, r8	; 0x07
+			this->outputReg = output_reg;
+ 55c:	0f 2e       	mov	r0, r31
+ 55e:	fd e1       	ldi	r31, 0x1D	; 29
+ 560:	af 2e       	mov	r10, r31
+ 562:	bb 24       	eor	r11, r11
+ 564:	f0 2d       	mov	r31, r0
+ 566:	ac 0e       	add	r10, r28
+ 568:	bd 1e       	adc	r11, r29
+ 56a:	bc 86       	std	Y+12, r11	; 0x0c
+ 56c:	ab 86       	std	Y+11, r10	; 0x0b
+			this->inputReg = input_reg ;
+ 56e:	0f 2e       	mov	r0, r31
+ 570:	ff e1       	ldi	r31, 0x1F	; 31
+ 572:	6f 2e       	mov	r6, r31
+ 574:	77 24       	eor	r7, r7
+ 576:	f0 2d       	mov	r31, r0
+ 578:	6c 0e       	add	r6, r28
+ 57a:	7d 1e       	adc	r7, r29
+ 57c:	7a 86       	std	Y+10, r7	; 0x0a
+ 57e:	69 86       	std	Y+9, r6	; 0x09
+		Register * inputReg;
+		Register * outputReg;
+		protected:
+		public:
+		Port(Register * dir_reg,Register * input_reg, Register * output_reg){
+			this->dirReg = dir_reg;
+ 580:	0f 2e       	mov	r0, r31
+ 582:	f1 e2       	ldi	r31, 0x21	; 33
+ 584:	2f 2e       	mov	r2, r31
+ 586:	33 24       	eor	r3, r3
+ 588:	f0 2d       	mov	r31, r0
+ 58a:	2c 0e       	add	r2, r28
+ 58c:	3d 1e       	adc	r3, r29
+ 58e:	3e 86       	std	Y+14, r3	; 0x0e
+ 590:	2d 86       	std	Y+13, r2	; 0x0d
+			this->outputReg = output_reg;
+ 592:	44 24       	eor	r4, r4
+ 594:	55 24       	eor	r5, r5
+ 596:	68 94       	set
+ 598:	45 f8       	bld	r4, 5
+ 59a:	4c 0e       	add	r4, r28
+ 59c:	5d 1e       	adc	r5, r29
+ 59e:	5a 8a       	std	Y+18, r5	; 0x12
+ 5a0:	49 8a       	std	Y+17, r4	; 0x11
+			this->inputReg = input_reg ;
+ 5a2:	82 e2       	ldi	r24, 0x22	; 34
+ 5a4:	90 e0       	ldi	r25, 0x00	; 0
+ 5a6:	8c 0f       	add	r24, r28
+ 5a8:	9d 1f       	adc	r25, r29
+ 5aa:	98 8b       	std	Y+16, r25	; 0x10
+ 5ac:	8f 87       	std	Y+15, r24	; 0x0f
+		Register * inputReg;
+		Register * outputReg;
+		protected:
+		public:
+		Port(Register * dir_reg,Register * input_reg, Register * output_reg){
+			this->dirReg = dir_reg;
+ 5ae:	84 e2       	ldi	r24, 0x24	; 36
+ 5b0:	90 e0       	ldi	r25, 0x00	; 0
+ 5b2:	8c 0f       	add	r24, r28
+ 5b4:	9d 1f       	adc	r25, r29
+ 5b6:	9c 8b       	std	Y+20, r25	; 0x14
+ 5b8:	8b 8b       	std	Y+19, r24	; 0x13
+			this->outputReg = output_reg;
+ 5ba:	83 e2       	ldi	r24, 0x23	; 35
+ 5bc:	90 e0       	ldi	r25, 0x00	; 0
+ 5be:	8c 0f       	add	r24, r28
+ 5c0:	9d 1f       	adc	r25, r29
+ 5c2:	98 8f       	std	Y+24, r25	; 0x18
+ 5c4:	8f 8b       	std	Y+23, r24	; 0x17
+			this->inputReg = input_reg ;
+ 5c6:	85 e2       	ldi	r24, 0x25	; 37
+ 5c8:	90 e0       	ldi	r25, 0x00	; 0
+ 5ca:	8c 0f       	add	r24, r28
+ 5cc:	9d 1f       	adc	r25, r29
+ 5ce:	9e 8b       	std	Y+22, r25	; 0x16
+ 5d0:	8d 8b       	std	Y+21, r24	; 0x15
+			AvrAtmega32():
+				StatusReg(0x5F),
+				_A_DDR(0x3A) , _A_Output(0x3B) , _A_Input(0x39),PortA(&(_A_DDR),&(_A_Input),&(_A_Output)),
+				_B_DDR(0x37) , _B_Output(0x38) , _B_Input(0x36),PortB(&(_B_DDR),&(_B_Input),&(_B_Output)),
+				_C_DDR(0x34) , _C_Output(0x35) , _C_Input(0x33),PortC(&(_C_DDR),&(_C_Input),&(_C_Output)),
+				_D_DDR(0x31) , _D_Output(0x32) , _D_Input(0x30),PortD(&(_D_DDR),&(_D_Input),&(_D_Output))
+ 5d2:	ce 01       	movw	r24, r28
+ 5d4:	49 96       	adiw	r24, 0x19	; 25
+ 5d6:	6f e5       	ldi	r22, 0x5F	; 95
+ 5d8:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 5dc:	c8 01       	movw	r24, r16
+ 5de:	6b e3       	ldi	r22, 0x3B	; 59
+ 5e0:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 5e4:	c7 01       	movw	r24, r14
+ 5e6:	6a e3       	ldi	r22, 0x3A	; 58
+ 5e8:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 5ec:	c6 01       	movw	r24, r12
+ 5ee:	69 e3       	ldi	r22, 0x39	; 57
+ 5f0:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 5f4:	c5 01       	movw	r24, r10
+ 5f6:	68 e3       	ldi	r22, 0x38	; 56
+ 5f8:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 5fc:	c4 01       	movw	r24, r8
+ 5fe:	67 e3       	ldi	r22, 0x37	; 55
+ 600:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 604:	c3 01       	movw	r24, r6
+ 606:	66 e3       	ldi	r22, 0x36	; 54
+ 608:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 60c:	c2 01       	movw	r24, r4
+ 60e:	65 e3       	ldi	r22, 0x35	; 53
+ 610:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 614:	c1 01       	movw	r24, r2
+ 616:	64 e3       	ldi	r22, 0x34	; 52
+ 618:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 61c:	ce 01       	movw	r24, r28
+ 61e:	82 96       	adiw	r24, 0x22	; 34
+ 620:	63 e3       	ldi	r22, 0x33	; 51
+ 622:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 626:	ce 01       	movw	r24, r28
+ 628:	83 96       	adiw	r24, 0x23	; 35
+ 62a:	62 e3       	ldi	r22, 0x32	; 50
+ 62c:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 630:	ce 01       	movw	r24, r28
+ 632:	84 96       	adiw	r24, 0x24	; 36
+ 634:	61 e3       	ldi	r22, 0x31	; 49
+ 636:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 63a:	ce 01       	movw	r24, r28
+ 63c:	85 96       	adiw	r24, 0x25	; 37
+ 63e:	60 e3       	ldi	r22, 0x30	; 48
+ 640:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+			{
+				_instance =  this;
+ 644:	ce 01       	movw	r24, r28
+ 646:	01 96       	adiw	r24, 0x01	; 1
+ 648:	90 93 81 00 	sts	0x0081, r25
+ 64c:	80 93 80 00 	sts	0x0080, r24
+			AvrAtmega32* mcu = AvrAtmega32::GetInstance();
+			Register * st_reg =&(mcu->StatusReg);
+ 650:	80 91 80 00 	lds	r24, 0x0080
+ 654:	90 91 81 00 	lds	r25, 0x0081
+			st_reg->Write(7,1);
+ 658:	48 96       	adiw	r24, 0x18	; 24
+ 65a:	67 e0       	ldi	r22, 0x07	; 7
+ 65c:	41 e0       	ldi	r20, 0x01	; 1
+ 65e:	0e 94 a5 00 	call	0x14a	; 0x14a <_ZN4MCAL8Register5WriteEhb>
+		}
+ 662:	a5 96       	adiw	r28, 0x25	; 37
+ 664:	0f b6       	in	r0, 0x3f	; 63
+ 666:	f8 94       	cli
+ 668:	de bf       	out	0x3e, r29	; 62
+ 66a:	0f be       	out	0x3f, r0	; 63
+ 66c:	cd bf       	out	0x3d, r28	; 61
+ 66e:	df 91       	pop	r29
+ 670:	cf 91       	pop	r28
+ 672:	1f 91       	pop	r17
+ 674:	0f 91       	pop	r16
+ 676:	ff 90       	pop	r15
+ 678:	ef 90       	pop	r14
+ 67a:	df 90       	pop	r13
+ 67c:	cf 90       	pop	r12
+ 67e:	bf 90       	pop	r11
+ 680:	af 90       	pop	r10
+ 682:	9f 90       	pop	r9
+ 684:	8f 90       	pop	r8
+ 686:	7f 90       	pop	r7
+ 688:	6f 90       	pop	r6
+ 68a:	5f 90       	pop	r5
+ 68c:	4f 90       	pop	r4
+ 68e:	3f 90       	pop	r3
+ 690:	2f 90       	pop	r2
+ 692:	08 95       	ret
+
+00000694 <_ZN3HAL3BtnC1EPNS_9DevicePinENS_11ActiveStateE>:
+using namespace HAL;
+namespace HAL{
+	class Btn:Device{
+		DevicePin * _btn_pin;
+		public:
+			Btn(DevicePin * pin,ActiveState state):
+ 694:	fc 01       	movw	r30, r24
+ 696:	db 01       	movw	r26, r22
+			U8				_pin_count;
+			ActiveState		_active_state;
+			DeviceDirection		_dev_dir;
+		public:
+			Device(U8 pin_count,ActiveState state,DeviceDirection dir):
+				_pin_count(pin_count),_active_state(state),_dev_dir(dir)
+ 698:	81 e0       	ldi	r24, 0x01	; 1
+ 69a:	80 83       	st	Z, r24
+ 69c:	41 83       	std	Z+1, r20	; 0x01
+ 69e:	12 82       	std	Z+2, r1	; 0x02
+				Device(1,state,Dinput)
+			{
+				//validation goes here
+				if (pin!=NULL)
+ 6a0:	10 97       	sbiw	r26, 0x00	; 0
+ 6a2:	51 f0       	breq	.+20     	; 0x6b8 <_ZN3HAL3BtnC1EPNS_9DevicePinENS_11ActiveStateE+0x24>
+				{
+					this->_btn_pin = pin ;
+ 6a4:	74 83       	std	Z+4, r23	; 0x04
+ 6a6:	63 83       	std	Z+3, r22	; 0x03
+					this->_pin_index = pin_index ;
+					this->_port = port ;
+				}
+			}
+			void Init(Direction dir){
+				this->_port->Direct(this->_pin_index,dir);
+ 6a8:	8d 91       	ld	r24, X+
+ 6aa:	9c 91       	ld	r25, X
+ 6ac:	11 97       	sbiw	r26, 0x01	; 1
+ 6ae:	12 96       	adiw	r26, 0x02	; 2
+ 6b0:	6c 91       	ld	r22, X
+ 6b2:	40 e0       	ldi	r20, 0x00	; 0
+ 6b4:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN4MCAL4Port6DirectEhNS_9DirectionE>
+ 6b8:	08 95       	ret
+
+000006ba <_ZN3HAL3LEDC1EPNS_9DevicePinENS_11ActiveStateE>:
+using namespace HAL;
+namespace HAL{
+	class LED:Device{
+			DevicePin * _led_pin;
+		public:
+			LED(DevicePin* pin,ActiveState state):
+ 6ba:	fc 01       	movw	r30, r24
+ 6bc:	db 01       	movw	r26, r22
+			U8				_pin_count;
+			ActiveState		_active_state;
+			DeviceDirection		_dev_dir;
+		public:
+			Device(U8 pin_count,ActiveState state,DeviceDirection dir):
+				_pin_count(pin_count),_active_state(state),_dev_dir(dir)
+ 6be:	81 e0       	ldi	r24, 0x01	; 1
+ 6c0:	80 83       	st	Z, r24
+ 6c2:	41 83       	std	Z+1, r20	; 0x01
+ 6c4:	82 83       	std	Z+2, r24	; 0x02
+				Device(1,state,Doutput){
+					if(pin!=NULL){
+ 6c6:	10 97       	sbiw	r26, 0x00	; 0
+ 6c8:	51 f0       	breq	.+20     	; 0x6de <_ZN3HAL3LEDC1EPNS_9DevicePinENS_11ActiveStateE+0x24>
+						this->_led_pin = pin ;
+ 6ca:	74 83       	std	Z+4, r23	; 0x04
+ 6cc:	63 83       	std	Z+3, r22	; 0x03
+					this->_pin_index = pin_index ;
+					this->_port = port ;
+				}
+			}
+			void Init(Direction dir){
+				this->_port->Direct(this->_pin_index,dir);
+ 6ce:	8d 91       	ld	r24, X+
+ 6d0:	9c 91       	ld	r25, X
+ 6d2:	11 97       	sbiw	r26, 0x01	; 1
+ 6d4:	12 96       	adiw	r26, 0x02	; 2
+ 6d6:	6c 91       	ld	r22, X
+ 6d8:	41 e0       	ldi	r20, 0x01	; 1
+ 6da:	0e 94 64 00 	call	0xc8	; 0xc8 <_ZN4MCAL4Port6DirectEhNS_9DirectionE>
+ 6de:	08 95       	ret
+
+000006e0 <main>:
+#ifdef TEST2
+#include "../../MCAL/interrupt/interrupt_controller.h"
+#include "../config/config1.h"
+#include "avr/interrupt.h"
+using namespace MCAL;
+int main(){
+ 6e0:	cf 93       	push	r28
+ 6e2:	df 93       	push	r29
+ 6e4:	00 d0       	rcall	.+0      	; 0x6e6 <main+0x6>
+ 6e6:	cd b7       	in	r28, 0x3d	; 61
+ 6e8:	de b7       	in	r29, 0x3e	; 62
+			_instance = this ;
+		}
+		public:
+		
+		static InterruptControler* GetInstance(){
+			if (_instance==NULL){
+ 6ea:	80 91 7e 00 	lds	r24, 0x007E
+ 6ee:	90 91 7f 00 	lds	r25, 0x007F
+ 6f2:	00 97       	sbiw	r24, 0x00	; 0
+ 6f4:	81 f4       	brne	.+32     	; 0x716 <main+0x36>
+	{
+		private:
+		Register  _GICR;
+		Register _MCUCR;
+		InterruptControler():
+		_GICR(0x5B),_MCUCR(0x55)
+ 6f6:	8e 01       	movw	r16, r28
+ 6f8:	0f 5f       	subi	r16, 0xFF	; 255
+ 6fa:	1f 4f       	sbci	r17, 0xFF	; 255
+ 6fc:	c8 01       	movw	r24, r16
+ 6fe:	6b e5       	ldi	r22, 0x5B	; 91
+ 700:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+ 704:	ce 01       	movw	r24, r28
+ 706:	02 96       	adiw	r24, 0x02	; 2
+ 708:	65 e5       	ldi	r22, 0x55	; 85
+ 70a:	0e 94 9d 00 	call	0x13a	; 0x13a <_ZN4MCAL8RegisterC1Eh>
+		{
+			_instance = this ;
+ 70e:	10 93 7f 00 	sts	0x007F, r17
+ 712:	00 93 7e 00 	sts	0x007E, r16
+		
+		static InterruptControler* GetInstance(){
+			if (_instance==NULL){
+				InterruptControler();
+			}
+			return _instance;
+ 716:	00 91 7e 00 	lds	r16, 0x007E
+ 71a:	10 91 7f 00 	lds	r17, 0x007F
+	
+	InterruptControler * intrC = InterruptControler::GetInstance();
+	intrC->EnableGlobal();
+ 71e:	c8 01       	movw	r24, r16
+ 720:	0e 94 6d 02 	call	0x4da	; 0x4da <_ZN4MCAL18InterruptControler12EnableGlobalEv>
+			Register * st_reg = &(mcu->StatusReg);
+			st_reg->Write(7,0);
+		}
+		
+		void Enable(ExInterrupt Intr){
+			EnableGlobal();
+ 724:	c8 01       	movw	r24, r16
+ 726:	0e 94 6d 02 	call	0x4da	; 0x4da <_ZN4MCAL18InterruptControler12EnableGlobalEv>
+			switch(Intr){
+				case Interrupt0:
+				bit = _INT0 ;
+				//General Interrupt Control Register : External Interrupt Request 0 Enable
+				//_GICR.Write(6,true);
+				SET_BIT(REG_GET(0x5B),6);
+ 72a:	8b b7       	in	r24, 0x3b	; 59
+ 72c:	80 64       	ori	r24, 0x40	; 64
+ 72e:	8b bf       	out	0x3b, r24	; 59
+				case Interrupt2:
+				//to be done
+				return;
+				break;
+			}
+			_MCUCR.Write(bit0,bit1,state);
+ 730:	c8 01       	movw	r24, r16
+ 732:	01 96       	adiw	r24, 0x01	; 1
+ 734:	60 e0       	ldi	r22, 0x00	; 0
+ 736:	41 e0       	ldi	r20, 0x01	; 1
+ 738:	20 e0       	ldi	r18, 0x00	; 0
+ 73a:	0e 94 ca 00 	call	0x194	; 0x194 <_ZN4MCAL8Register5WriteEhhh>
+						this->_led_pin->Init(output);
+					}
+				}
+			void On(){
+				if (this->_active_state==activeHigh){
+ 73e:	01 e6       	ldi	r16, 0x61	; 97
+ 740:	10 e0       	ldi	r17, 0x00	; 0
+					this->_led_pin->Write(1);
+				}else{
+					this->_led_pin->Write(0);
+ 742:	0f 2e       	mov	r0, r31
+ 744:	f3 e6       	ldi	r31, 0x63	; 99
+ 746:	ef 2e       	mov	r14, r31
+ 748:	f0 e0       	ldi	r31, 0x00	; 0
+ 74a:	ff 2e       	mov	r15, r31
+ 74c:	f0 2d       	mov	r31, r0
+#ifdef TEST2
+#include "../../MCAL/interrupt/interrupt_controller.h"
+#include "../config/config1.h"
+#include "avr/interrupt.h"
+using namespace MCAL;
+int main(){
+ 74e:	0f 2e       	mov	r0, r31
+ 750:	f4 ef       	ldi	r31, 0xF4	; 244
+ 752:	cf 2e       	mov	r12, r31
+ 754:	f1 e0       	ldi	r31, 0x01	; 1
+ 756:	df 2e       	mov	r13, r31
+ 758:	f0 2d       	mov	r31, r0
+						this->_led_pin = pin ;
+						this->_led_pin->Init(output);
+					}
+				}
+			void On(){
+				if (this->_active_state==activeHigh){
+ 75a:	d8 01       	movw	r26, r16
+ 75c:	8c 91       	ld	r24, X
+ 75e:	81 30       	cpi	r24, 0x01	; 1
+ 760:	51 f4       	brne	.+20     	; 0x776 <main+0x96>
+					this->_led_pin->Write(1);
+ 762:	d7 01       	movw	r26, r14
+ 764:	ed 91       	ld	r30, X+
+ 766:	fc 91       	ld	r31, X
+			}
+			void Read(U8 * val){
+				this->_port->Read(this->_pin_index,val);
+			}
+			void Write(bool val){
+				this->_port->Write(this->_pin_index,val);
+ 768:	80 81       	ld	r24, Z
+ 76a:	91 81       	ldd	r25, Z+1	; 0x01
+ 76c:	62 81       	ldd	r22, Z+2	; 0x02
+ 76e:	41 e0       	ldi	r20, 0x01	; 1
+ 770:	0e 94 79 00 	call	0xf2	; 0xf2 <_ZN4MCAL4Port5WriteEhb>
+ 774:	09 c0       	rjmp	.+18     	; 0x788 <main+0xa8>
+				}else{
+					this->_led_pin->Write(0);
+ 776:	d7 01       	movw	r26, r14
+ 778:	ed 91       	ld	r30, X+
+ 77a:	fc 91       	ld	r31, X
+ 77c:	80 81       	ld	r24, Z
+ 77e:	91 81       	ldd	r25, Z+1	; 0x01
+ 780:	62 81       	ldd	r22, Z+2	; 0x02
+ 782:	40 e0       	ldi	r20, 0x00	; 0
+ 784:	0e 94 79 00 	call	0xf2	; 0xf2 <_ZN4MCAL4Port5WriteEhb>
+ 788:	c6 01       	movw	r24, r12
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 78a:	ef ec       	ldi	r30, 0xCF	; 207
+ 78c:	f7 e0       	ldi	r31, 0x07	; 7
+ 78e:	31 97       	sbiw	r30, 0x01	; 1
+ 790:	f1 f7       	brne	.-4      	; 0x78e <main+0xae>
+ 792:	00 c0       	rjmp	.+0      	; 0x794 <main+0xb4>
+ 794:	00 00       	nop
+ 796:	01 97       	sbiw	r24, 0x01	; 1
+				this->_led_pin->Toggle();
+			}
+			void Flash(U16 on_duration,U16 off_duration){
+				U16 i ;
+				this->On();
+				for (i=0;i<on_duration;i++)
+ 798:	c1 f7       	brne	.-16     	; 0x78a <main+0xaa>
+				}else{
+					this->_led_pin->Write(0);
+				}
+			}
+			void Off(){
+				if (this->_active_state==activeHigh){
+ 79a:	d8 01       	movw	r26, r16
+ 79c:	8c 91       	ld	r24, X
+ 79e:	81 30       	cpi	r24, 0x01	; 1
+ 7a0:	51 f4       	brne	.+20     	; 0x7b6 <main+0xd6>
+					this->_led_pin->Write(0);
+ 7a2:	d7 01       	movw	r26, r14
+ 7a4:	ed 91       	ld	r30, X+
+ 7a6:	fc 91       	ld	r31, X
+ 7a8:	80 81       	ld	r24, Z
+ 7aa:	91 81       	ldd	r25, Z+1	; 0x01
+ 7ac:	62 81       	ldd	r22, Z+2	; 0x02
+ 7ae:	40 e0       	ldi	r20, 0x00	; 0
+ 7b0:	0e 94 79 00 	call	0xf2	; 0xf2 <_ZN4MCAL4Port5WriteEhb>
+ 7b4:	09 c0       	rjmp	.+18     	; 0x7c8 <main+0xe8>
+				}else{
+					this->_led_pin->Write(1);
+ 7b6:	d7 01       	movw	r26, r14
+ 7b8:	ed 91       	ld	r30, X+
+ 7ba:	fc 91       	ld	r31, X
+ 7bc:	80 81       	ld	r24, Z
+ 7be:	91 81       	ldd	r25, Z+1	; 0x01
+ 7c0:	62 81       	ldd	r22, Z+2	; 0x02
+ 7c2:	41 e0       	ldi	r20, 0x01	; 1
+ 7c4:	0e 94 79 00 	call	0xf2	; 0xf2 <_ZN4MCAL4Port5WriteEhb>
+ 7c8:	c6 01       	movw	r24, r12
+ 7ca:	ef ec       	ldi	r30, 0xCF	; 207
+ 7cc:	f7 e0       	ldi	r31, 0x07	; 7
+ 7ce:	31 97       	sbiw	r30, 0x01	; 1
+ 7d0:	f1 f7       	brne	.-4      	; 0x7ce <main+0xee>
+ 7d2:	00 c0       	rjmp	.+0      	; 0x7d4 <main+0xf4>
+ 7d4:	00 00       	nop
+ 7d6:	01 97       	sbiw	r24, 0x01	; 1
+				for (i=0;i<on_duration;i++)
+				{
+					_delay_ms(1);
+				}
+				this->Off();
+				for (i=0;i<off_duration;i++)
+ 7d8:	c1 f7       	brne	.-16     	; 0x7ca <main+0xea>
+ 7da:	bf cf       	rjmp	.-130    	; 0x75a <main+0x7a>
+
+000007dc <__vector_1>:
+		led2.Flash(500,500);
+	}
+}
+
+
+ISR (INT0_vect){
+ 7dc:	1f 92       	push	r1
+ 7de:	0f 92       	push	r0
+ 7e0:	0f b6       	in	r0, 0x3f	; 63
+ 7e2:	0f 92       	push	r0
+ 7e4:	11 24       	eor	r1, r1
+ 7e6:	2f 93       	push	r18
+ 7e8:	3f 93       	push	r19
+ 7ea:	4f 93       	push	r20
+ 7ec:	5f 93       	push	r21
+ 7ee:	6f 93       	push	r22
+ 7f0:	7f 93       	push	r23
+ 7f2:	8f 93       	push	r24
+ 7f4:	9f 93       	push	r25
+ 7f6:	af 93       	push	r26
+ 7f8:	bf 93       	push	r27
+ 7fa:	ef 93       	push	r30
+ 7fc:	ff 93       	push	r31
+				}else{
+					this->_led_pin->Write(1);
+				}
+			}
+			void Toggle(){
+				this->_led_pin->Toggle();
+ 7fe:	e0 91 6d 00 	lds	r30, 0x006D
+ 802:	f0 91 6e 00 	lds	r31, 0x006E
+			}
+			void Toggle(){
+				this->_port->Toggle(this->_pin_index);
+ 806:	80 81       	ld	r24, Z
+ 808:	91 81       	ldd	r25, Z+1	; 0x01
+ 80a:	62 81       	ldd	r22, Z+2	; 0x02
+ 80c:	0e 94 85 00 	call	0x10a	; 0x10a <_ZN4MCAL4Port6ToggleEh>
+	led0.Toggle();
+	
+}
+ 810:	ff 91       	pop	r31
+ 812:	ef 91       	pop	r30
+ 814:	bf 91       	pop	r27
+ 816:	af 91       	pop	r26
+ 818:	9f 91       	pop	r25
+ 81a:	8f 91       	pop	r24
+ 81c:	7f 91       	pop	r23
+ 81e:	6f 91       	pop	r22
+ 820:	5f 91       	pop	r21
+ 822:	4f 91       	pop	r20
+ 824:	3f 91       	pop	r19
+ 826:	2f 91       	pop	r18
+ 828:	0f 90       	pop	r0
+ 82a:	0f be       	out	0x3f, r0	; 63
+ 82c:	0f 90       	pop	r0
+ 82e:	1f 90       	pop	r1
+ 830:	18 95       	reti
+
+00000832 <_GLOBAL__sub_I__ZN4MCAL11AvrAtmega329_instanceE>:
+ 832:	0f 93       	push	r16
+ 834:	1f 93       	push	r17
+ 836:	cf 93       	push	r28
+ 838:	df 93       	push	r29
+
+#include "../Device/BTN/BTN.h"
+#include "../Device/LED/LED.h"
+using namespace HAL;
+
+static AvrAtmega32 * mcuConfig = AvrAtmega32::GetInstance();
+ 83a:	0e 94 95 01 	call	0x32a	; 0x32a <_ZN4MCAL11AvrAtmega3211GetInstanceEv>
+ 83e:	90 93 83 00 	sts	0x0083, r25
+ 842:	80 93 82 00 	sts	0x0082, r24
+static Port * Port_D = &(mcuConfig->PortD) ;
+ 846:	42 96       	adiw	r24, 0x12	; 18
+ 848:	90 93 85 00 	sts	0x0085, r25
+ 84c:	80 93 84 00 	sts	0x0084, r24
+			Port*	_port ;
+			U8		_pin_index ;	
+		public:	
+			DevicePin(Port * port,U8 pin_index){
+				if (IS_PIN(pin_index)){
+					this->_pin_index = pin_index ;
+ 850:	10 92 88 00 	sts	0x0088, r1
+					this->_port = port ;
+ 854:	68 e8       	ldi	r22, 0x88	; 136
+ 856:	70 e0       	ldi	r23, 0x00	; 0
+ 858:	fb 01       	movw	r30, r22
+ 85a:	92 93       	st	-Z, r25
+ 85c:	82 93       	st	-Z, r24
+ 85e:	bf 01       	movw	r22, r30
+			Port*	_port ;
+			U8		_pin_index ;	
+		public:	
+			DevicePin(Port * port,U8 pin_index){
+				if (IS_PIN(pin_index)){
+					this->_pin_index = pin_index ;
+ 860:	21 e0       	ldi	r18, 0x01	; 1
+ 862:	20 93 8b 00 	sts	0x008B, r18
+					this->_port = port ;
+ 866:	0b e8       	ldi	r16, 0x8B	; 139
+ 868:	10 e0       	ldi	r17, 0x00	; 0
+ 86a:	f8 01       	movw	r30, r16
+ 86c:	92 93       	st	-Z, r25
+ 86e:	82 93       	st	-Z, r24
+ 870:	8f 01       	movw	r16, r30
+			Port*	_port ;
+			U8		_pin_index ;	
+		public:	
+			DevicePin(Port * port,U8 pin_index){
+				if (IS_PIN(pin_index)){
+					this->_pin_index = pin_index ;
+ 872:	22 e0       	ldi	r18, 0x02	; 2
+ 874:	20 93 8e 00 	sts	0x008E, r18
+					this->_port = port ;
+ 878:	ce e8       	ldi	r28, 0x8E	; 142
+ 87a:	d0 e0       	ldi	r29, 0x00	; 0
+ 87c:	9a 93       	st	-Y, r25
+ 87e:	8a 93       	st	-Y, r24
+*/
+static DevicePin Btn0Pin(Port_D,0);
+static DevicePin Btn1Pin(Port_D,1);
+static DevicePin Btn2Pin(Port_D,2);
+
+extern Btn btn0(&Btn0Pin,activeHigh);
+ 880:	89 e7       	ldi	r24, 0x79	; 121
+ 882:	90 e0       	ldi	r25, 0x00	; 0
+ 884:	41 e0       	ldi	r20, 0x01	; 1
+ 886:	0e 94 4a 03 	call	0x694	; 0x694 <_ZN3HAL3BtnC1EPNS_9DevicePinENS_11ActiveStateE>
+extern Btn btn1(&Btn1Pin,activeHigh);
+ 88a:	84 e7       	ldi	r24, 0x74	; 116
+ 88c:	90 e0       	ldi	r25, 0x00	; 0
+ 88e:	b8 01       	movw	r22, r16
+ 890:	41 e0       	ldi	r20, 0x01	; 1
+ 892:	0e 94 4a 03 	call	0x694	; 0x694 <_ZN3HAL3BtnC1EPNS_9DevicePinENS_11ActiveStateE>
+extern Btn btn2(&Btn2Pin,activeHigh);
+ 896:	8f e6       	ldi	r24, 0x6F	; 111
+ 898:	90 e0       	ldi	r25, 0x00	; 0
+ 89a:	be 01       	movw	r22, r28
+ 89c:	41 e0       	ldi	r20, 0x01	; 1
+ 89e:	0e 94 4a 03 	call	0x694	; 0x694 <_ZN3HAL3BtnC1EPNS_9DevicePinENS_11ActiveStateE>
+
+/*
+*Initialize LEDS
+*/
+
+static DevicePin LED0Pin(Port_D,5);
+ 8a2:	80 91 84 00 	lds	r24, 0x0084
+ 8a6:	90 91 85 00 	lds	r25, 0x0085
+			Port*	_port ;
+			U8		_pin_index ;	
+		public:	
+			DevicePin(Port * port,U8 pin_index){
+				if (IS_PIN(pin_index)){
+					this->_pin_index = pin_index ;
+ 8aa:	25 e0       	ldi	r18, 0x05	; 5
+ 8ac:	20 93 91 00 	sts	0x0091, r18
+					this->_port = port ;
+ 8b0:	61 e9       	ldi	r22, 0x91	; 145
+ 8b2:	70 e0       	ldi	r23, 0x00	; 0
+ 8b4:	fb 01       	movw	r30, r22
+ 8b6:	92 93       	st	-Z, r25
+ 8b8:	82 93       	st	-Z, r24
+ 8ba:	bf 01       	movw	r22, r30
+			Port*	_port ;
+			U8		_pin_index ;	
+		public:	
+			DevicePin(Port * port,U8 pin_index){
+				if (IS_PIN(pin_index)){
+					this->_pin_index = pin_index ;
+ 8bc:	26 e0       	ldi	r18, 0x06	; 6
+ 8be:	20 93 94 00 	sts	0x0094, r18
+					this->_port = port ;
+ 8c2:	04 e9       	ldi	r16, 0x94	; 148
+ 8c4:	10 e0       	ldi	r17, 0x00	; 0
+ 8c6:	f8 01       	movw	r30, r16
+ 8c8:	92 93       	st	-Z, r25
+ 8ca:	82 93       	st	-Z, r24
+ 8cc:	8f 01       	movw	r16, r30
+			Port*	_port ;
+			U8		_pin_index ;	
+		public:	
+			DevicePin(Port * port,U8 pin_index){
+				if (IS_PIN(pin_index)){
+					this->_pin_index = pin_index ;
+ 8ce:	27 e0       	ldi	r18, 0x07	; 7
+ 8d0:	20 93 97 00 	sts	0x0097, r18
+					this->_port = port ;
+ 8d4:	c7 e9       	ldi	r28, 0x97	; 151
+ 8d6:	d0 e0       	ldi	r29, 0x00	; 0
+ 8d8:	9a 93       	st	-Y, r25
+ 8da:	8a 93       	st	-Y, r24
+static DevicePin LED1Pin(Port_D,6);
+static DevicePin LED2Pin(Port_D,7);
+
+
+extern LED led0(&LED0Pin,activeHigh);
+ 8dc:	8a e6       	ldi	r24, 0x6A	; 106
+ 8de:	90 e0       	ldi	r25, 0x00	; 0
+ 8e0:	41 e0       	ldi	r20, 0x01	; 1
+ 8e2:	0e 94 5d 03 	call	0x6ba	; 0x6ba <_ZN3HAL3LEDC1EPNS_9DevicePinENS_11ActiveStateE>
+extern LED led1(&LED1Pin,activeHigh);
+ 8e6:	85 e6       	ldi	r24, 0x65	; 101
+ 8e8:	90 e0       	ldi	r25, 0x00	; 0
+ 8ea:	b8 01       	movw	r22, r16
+ 8ec:	41 e0       	ldi	r20, 0x01	; 1
+ 8ee:	0e 94 5d 03 	call	0x6ba	; 0x6ba <_ZN3HAL3LEDC1EPNS_9DevicePinENS_11ActiveStateE>
+extern LED led2(&LED2Pin,activeHigh);
+ 8f2:	80 e6       	ldi	r24, 0x60	; 96
+ 8f4:	90 e0       	ldi	r25, 0x00	; 0
+ 8f6:	be 01       	movw	r22, r28
+ 8f8:	41 e0       	ldi	r20, 0x01	; 1
+ 8fa:	0e 94 5d 03 	call	0x6ba	; 0x6ba <_ZN3HAL3LEDC1EPNS_9DevicePinENS_11ActiveStateE>
+ 8fe:	df 91       	pop	r29
+ 900:	cf 91       	pop	r28
+ 902:	1f 91       	pop	r17
+ 904:	0f 91       	pop	r16
+ 906:	08 95       	ret
+
+00000908 <__tablejump2__>:
+ 908:	ee 0f       	add	r30, r30
+ 90a:	ff 1f       	adc	r31, r31
+
+0000090c <__tablejump__>:
+ 90c:	05 90       	lpm	r0, Z+
+ 90e:	f4 91       	lpm	r31, Z
+ 910:	e0 2d       	mov	r30, r0
+ 912:	09 94       	ijmp
+
+00000914 <_exit>:
+ 914:	f8 94       	cli
+
+00000916 <__stop_program>:
+ 916:	ff cf       	rjmp	.-2      	; 0x916 <__stop_program>

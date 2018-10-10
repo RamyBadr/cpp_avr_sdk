@@ -1,45 +1,32 @@
 /*
- * avratmega32.h
+ * AVRAtmega32_consts.h
  *
- * Created: 09/09/2018 10:21:35 PM
- *  Author: Ramy Badr
+ * Created: 25/09/2018 11:51:46 PM
+ *  Author: www
  */ 
 
 
-#ifndef AVRATMEGA32_H_
-#define AVRATMEGA32_H_
-
-
-
-#include "../UTILS/basicmacros.h"
-#include "../UTILS/datatypes.h"
-
-//#define F_CPU 8000000UL
-
-#define INPUT			0
-#define OUTPUT			1
-#define IS_DIR(dir)		((dir==INPUT)||(dir==OUTPUT))
-
-
-
+#ifndef AVRATMEGA32_CONSTS_H_
+#define AVRATMEGA32_CONSTS_H_
 
  /* Port A Registers*/
- #define PINA	*(volatile U8 *const)0x39
- #define DDRA	*(volatile U8 *const)0x3A
- #define PORTA	*(volatile U8 *const)0x3B
- /* Port B Registers*/
- #define PINB	*(volatile U8 *const)0x36
- #define DDRB	*(volatile U8 *const)0x37
- #define PORTB	*(volatile U8 *const)0x38
- /* Port C Registers*/
- #define PINC	*(volatile U8 *const)0x33
- #define DDRC	*(volatile U8 *const)0x34
- #define PORTC	*(volatile U8 *const)0x35
- /* Port D Registers*/
- #define PIND	*(volatile U8 *const)0x30
- #define DDRD	*(volatile U8 *const)0x31
- #define PORTD	*(volatile U8 *const)0x32
-
+ 
+ //#define PINA	*(volatile U8 *const)0x39
+ //#define DDRA	*(volatile U8 *const)0x3A
+ //#define PORTA	*(volatile U8 *const)0x3B
+ ///* Port B Registers*/
+ //#define PINB	*(volatile U8 *const)0x36
+ //#define DDRB	*(volatile U8 *const)0x37
+ //#define PORTB	*(volatile U8 *const)0x38
+ ///* Port C Registers*/
+ //#define PINC	*(volatile U8 *const)0x33
+ //#define DDRC	*(volatile U8 *const)0x34
+ //#define PORTC	*(volatile U8 *const)0x35
+ ///* Port D Registers*/
+ //#define PIND	*(volatile U8 *const)0x30
+ //#define DDRD	*(volatile U8 *const)0x31
+ //#define PORTD	*(volatile U8 *const)0x32
+//
 
 #define A	(0x39)
 #define B	(0x36)
@@ -49,9 +36,9 @@
 #define IS_PORT(port_base)	((port_base==A)||(port_base==B)||(port_base==C)||(port_base==D))
 //#define IS_PIN(pin)			(pin>=0&&pin<=7)
 
-#define PORT(port_base)		(*((volatile U8 * const)(port_base+0x02)))
-#define DDR(port_base)		(*((volatile U8 * const)(port_base+0x01)))
-#define PIN(port_base)		(*((volatile U8 * const)(port_base+0x00)))
+//#define PORT(port_base)		(*((volatile U8 * const)(port_base+0x02)))
+//#define DDR(port_base)		(*((volatile U8 * const)(port_base+0x01)))
+//#define PIN(port_base)		(*((volatile U8 * const)(port_base+0x00)))
 
 
 /********** 7 **********/
@@ -99,14 +86,14 @@
 #define PIN_ADC0	0
 
 /* CPU stack pointer high */
-#define SPL (*(volatile U8 *const)0x5D)
+//#define SPL (*(volatile U8 *const)0x5D)
 #define SP8	 0
 #define SP9  1
 #define SP10 2
 #define SP11 3
 
 /* CPU stack pointer low */
-#define SPH *(volatile U8 *const)0x5E
+//#define SPH *(volatile U8 *const)0x5E
 #define SP0 0
 #define SP1 1
 #define SP2 2
@@ -117,7 +104,7 @@
 #define SP7 7
 
 /* status register */
-#define SREG (*(volatile U8 *const)0x5F)
+//#define SREG (*(volatile U8 *const)0x5F)
 
 /* C: Carry Flag */
 #define c 0
@@ -150,7 +137,7 @@
 // General interrupt control register.
 // External Interrupts control in MCU Control Register"MCUCR"
 // ////////////////////////////////////////////////////////////////////////////////////////
-#define GICR *(volatile U8 *const)0x5B
+//#define GICR *(volatile U8 *const)0x5B
 // ////////////////////////////////////////////////////////////////////////////////////////
 // Interrupt vector change enable.
 // must be written to logic one to enable change of the IVSEL bit.
@@ -191,7 +178,7 @@
 // ////////////////////////////////////////////////////////////////////////////////////////
 // General Interrupt Flag Register.
 // ////////////////////////////////////////////////////////////////////////////////////////
-#define GIFR *(volatile U8 *const)0x5A
+//#define GIFR *(volatile U8 *const)0x5A
 // ////////////////////////////////////////////////////////////////////////////////////////
 // INTF1: External Interrupt Flag 1
 // When an event on the INT1 pin triggers an interrupt request, INTF1 becomes set (one).
@@ -221,7 +208,7 @@
 // ////////////////////////////////////////////////////////////////////////////////////////
 // MCU Control Register, contains control bits for power management.
 // ////////////////////////////////////////////////////////////////////////////////////////
-#define MCUCR *(volatile U8 *const)0x55
+//#define MCUCR *(volatile U8 *const)0x55
 
 // ////////////////////////////////////////////////////////////////////////////////////////
 // set(one) to make the MCU enter the sleep mode when the SLEEP instruction is executed.
@@ -271,7 +258,7 @@
 ************************************************************************
 ** MCU Control and status register, provides information on which reset source caused an MCU Reset.
 */
-#define MCUCSR *(volatile U8 *const)0x54
+//#define MCUCSR *(volatile U8 *const)0x54
 /*
 ** PORF: Power-on Reset Flag
 ** This bit is set if a Power-on Reset occurs. The bit is reset only by writing a logic zero to the flag. To make
@@ -332,7 +319,7 @@
 ** Oscillator Calibration Value [n = 7:0]
 ** Read page 47 on latest data sheet.
 */
-#define OSCCAL	*(volatile U8 *const)0x51
+//#define OSCCAL	*(volatile U8 *const)0x51
 #define CAL0	0
 #define CAL1	1
 #define CAL2	2
@@ -352,7 +339,7 @@
 ** to the debugger. The CPU can transfer a byte to the debugger by writing to this location. At the same
 ** time, an internal flag; I/O Debug Register Dirty – IDRD – is set to indicate to the debugger that the register has been written.
 */
-#define OCDR	*(volatile U8 *const)0x51
+//#define OCDR	*(volatile U8 *const)0x51
 
 #define OCDR0	0
 #define OCDR1 	1
@@ -378,7 +365,7 @@
 ** SPMCR – Store Program Memory Control Register
 ** 
 */
-#define SPMCR	*(volatile U8 *const)0x57
+//#define SPMCR	*(volatile U8 *const)0x57
 /*
 ** SPMEN: Store Program Memory.
 ** This bit enables the SPM instruction for the next four clock cycles. If written to one together with eitherRWWSRE, 
@@ -447,7 +434,7 @@
 /*
 ** SFIOR – Special Function IO Register
 */
-#define SFIOR	*(volatile U8 *const)0x50
+//#define SFIOR	*(volatile U8 *const)0x50
 /*
 ** When this bit is written to one, the pull-ups in the I/O ports are disabled even if the DDxn and PORTxn 
 ** Registers are configured to enable the pull-ups ({DDxn, PORTxn} = 0b01)
@@ -496,7 +483,7 @@
 ** TCCR0 – Timer/Counter Control Register.
 ** 
 */
-#define TCCR0	*(volatile U8 *const)0x45
+//#define TCCR0	*(volatile U8 *const)0x45
 /*
 ** FOC0: Force Output Compare
 ** The FOC0 bit is only active when the WGM00 bit specifies a non-PWM mode. However, for ensuring
@@ -569,18 +556,18 @@
 ** Modifying the counter (TCNT0) while the counter is running, introduces a risk of missing a Compare Match between TCNT0 and the OCR0 Register.
 ** Writing to the TCNT0 Register blocks (removes) the Compare Match on the following timer clock.
 */
-#define TCNT0	*(volatile U8 *const)0x44
+//#define TCNT0	*(volatile U8 *const)0x44
 /*
 ** OCR0 – Output Compare Register
 ** The Output Compare Register contains an 8-bit value that is continuously compared with the counter value (TCNT0).
 ** A match can be used to generate an Output Compare interrupt, or to generate a waveform output on the OC0 pin.
 */
-#define OCR0	*(volatile U8 *const)0x43
+//#define OCR0	*(volatile U8 *const)0x43
 /*
 ** TIMSK – Timer/Counter Interrupt Mask Register.
 ** 
 */
-#define TIMSK	*(volatile U8 *const)0x59
+//#define TIMSK	*(volatile U8 *const)0x59
 /*
 ** OCIE0: Timer/CounterTimer/Counter0 Output Compare Match Interrupt Enable.
 ** When the OCIE0 bit is written to one and the I-bit in the Status Register is set (one), the Timer/Counter0 Compare Match interrupt is enabled.
@@ -598,7 +585,7 @@
 /*
 ** TIFR – Timer/Counter Interrupt Flag Register
 */
-#define TIFR	*(volatile U8 *const)0x58
+//#define TIFR	*(volatile U8 *const)0x58
 /*
 ** OCF0: Output Compare Flag 0.
 ** The OCF0 bit is set (one) when a Compare Match occurs between the Timer/Counter0 and the data in OCR0 – Output Compare Register0. 
@@ -622,7 +609,7 @@
 
 ** TCCR1A – Timer/Counter1 Control Register A
 */
-#define TCCR1A	*(volatile U8 *const)0x4F
+//#define TCCR1A	*(volatile U8 *const)0x4F
 /*
 ** COM1An: Compare Output Mode for Channel A [n = 1:0].
 */
@@ -702,7 +689,7 @@
 /*
 ** TCCR1B – Timer/Counter1 Control Register B
 */
-#define TCCR1B	*(volatile U8 *const)0x4E
+//#define TCCR1B	*(volatile U8 *const)0x4E
 /*
 ** ICNC1: Input Capture Noise Canceler.
 ** Setting this bit (to one) activates the Input Capture Noise Canceler. When the noise canceler is activated, 
@@ -756,15 +743,15 @@
 ** TCNT1 and one of the OCR1x Registers. 
 ** Writing to the TCNT1 Register blocks (removes) the compare match on the following timer clock for all compare units.
 */
-#define TCNT1L	*(volatile U8 *const)0x4C
+//#define TCNT1L	*(volatile U8 *const)0x4C
 /*
 ** TCNT1H – Timer/Counter1 High byte.
 */
-#define TCNT1H	*(volatile U8 *const)0x4D
+//#define TCNT1H	*(volatile U8 *const)0x4D
 /*
 ** Assuming the CPU is little endian memory storing, TCNT1 can be written as:
 */
-#define TCNT1	*(volatile U16 *const)0x4C
+//#define TCNT1	*(volatile U16 *const)0x4C
 
 /*
 ** OCR1AL – Output Compare Register 1 A Low byte
@@ -774,27 +761,27 @@
 ** the CPU writes to these registers, the access is performed using an 8-bit temporary High Byte Register (TEMP). 
 ** This temporary register is shared by all the other 16-bit registers.
 */
-#define OCR1AL	*(volatile U8 *const)0x4A
+//#define OCR1AL	*(volatile U8 *const)0x4A
 /*
 ** OCR1AH – Output Compare Register 1 A High byte
 */
-#define OCR1AH	*(volatile U8 *const)0x4B
+//#define OCR1AH	*(volatile U8 *const)0x4B
 /*
 ** Assuming the CPU is little endian memory storing, OCR1A can be written as:
 */
-#define OCR1A	*(volatile U16 *const)0x4A
+//#define OCR1A	*(volatile U16 *const)0x4A
 /*
 ** OCR1BL – Output Compare Register 1 B Low byte
 */
-#define OCR1BL	*(volatile U8 *const)0x48
+//#define OCR1BL	*(volatile U8 *const)0x48
 /*
 ** OCR1BH – Output Compare Register 1 B High byte
 */
-#define OCR1BH	*(volatile U8 *const)0x49
+//#define OCR1BH	*(volatile U8 *const)0x49
 /*
 ** Assuming the CPU is little endian memory storing, OCR1B can be written as:
 */
-#define OCR1B	*(volatile U16 *const)0x48
+//#define OCR1B	*(volatile U16 *const)0x48
 /*
 ** ICR1L – Input Capture Register 1 Low byte
 ** The Input Capture is updated with the counter (TCNT1) value each time an event occurs on the ICP1 pin 
@@ -803,15 +790,15 @@
 ** these registers, the access is performed using an 8-bit temporary High Byte Register (TEMP). 
 ** This temporary register is shared by all the other 16-bit registers.
 */
-#define ICR1L	*(volatile U8 *const)0x46
+//#define ICR1L	*(volatile U8 *const)0x46
 /*
 ** ICR1H – Input Capture Register 1 High byte.
 */
-#define ICR1H	*(volatile U8 *const)0x47
+//#define ICR1H	*(volatile U8 *const)0x47
 /*
 ** Assuming the CPU is little endian memory storing, ICR1 can be written as:
 */
-#define ICR1	*(volatile U16 *const)0x46
+//#define ICR1	*(volatile U16 *const)0x46
 /*
 ** TIMSK – Timer/Counter Interrupt Mask Register
 ** common for 3 timers, can't be defined because it defined in Timer0 before.
@@ -970,18 +957,18 @@
 ** Writing to the TCNT0 Register blocks (removes) the Compare Match on the following timer clock. 
 ** Modifying the counter (TCNT0) while the counter is running, introduces a risk of missing a Compare Match between TCNT0 and the OCR0 Register.
 */
-#define TCNT0	*(volatile U8 *const)0x44
+////#define TCNT0	*(volatile U8 *const)0x44
 /*
 ** OCR0 – Output Compare Register
 ** The Output Compare Register contains an 8-bit value that is continuously compared with the counter value (TCNT0). 
 ** A match can be used to generate an Output Compare interrupt, or to generate a waveform output on the OC0 pin.
 */ 
-#define OCR0	*(volatile U8 *const)0x43
+//#define OCR0	*(volatile U8 *const)0x43
 
 /*
 ** ASSR – Asynchronous Status Register 
 */
-#define ASSR	*(volatile U8 *const)0x42
+//#define ASSR	*(volatile U8 *const)0x42
 /*
 ** AS2: Asynchronous Timer/Counter2
 ** When AS2 is written to zero, Timer/Counter 2 is clocked from the I/O clock, clk I/O . When AS2 is written to one, Timer/Counter 2 is 
@@ -1123,7 +1110,7 @@
 /*
 ** ADMUX – ADC Multiplexer Selection Register
 */
-#define ADMUX	*(volatile U8 *const)0x27
+//#define ADMUX	*(volatile U8 *const)0x27
 /*
 ** REFSn: Reference Selection [n = 1:0]
 ** These bits select the voltage reference for the ADC. If these bits are changed during a conversion, the change will not go in 
@@ -1158,7 +1145,7 @@
 /*
 ** ADCSRA – ADC Control and Status Register A
 */
-#define ADCSRA	*(volatile U8 *const)0x26
+//#define ADCSRA	*(volatile U8 *const)0x26
 /*
 ** ADEN: ADC Enable
 ** Writing this bit to one enables the ADC. By writing it to zero, the ADC is turned off. Turning the ADC off while a conversion is 
@@ -1247,7 +1234,7 @@
 /*
 ** SPCR – SPI Control Register
 */
-#define SPCR	*(volatile U8 *const)0x2D
+//#define SPCR	*(volatile U8 *const)0x2D
 /*
 ** SPIE: SPI Interrupt Enable
 ** This bit causes the SPI interrupt to be executed if SPIF bit in the SPSR Register is set and if the Global Interrupt Enable bit in SREG is set.
@@ -1305,7 +1292,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** SPSR – SPI Status Register
 */
-#define SPSR	*(volatile U8 *const)0x2E
+//#define SPSR	*(volatile U8 *const)0x2E
 /*
 ** SPIF: SPI Interrupt Flag
 ** When a serial transfer is complete, the SPIF Flag is set. An interrupt is generated if SPIE in SPCR is set and global interrupts are enabled. ** If SS is an input and is driven low when the SPI is in Master mode, this will also set the SPIF Flag. SPIF is cleared by 
@@ -1330,7 +1317,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** SPDR – SPI Data Register is a read/write register
 */
-#define SPDR	*(volatile U8 *const)0x2F
+//#define SPDR	*(volatile U8 *const)0x2F
 /*
 ** SPIDn: SPI Data
 ** The SPI Data Register is a read/write register used for data transfer between the Register File and the SPI Shift Register. 
@@ -1353,7 +1340,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** UDR – USART I/O Data Register
 */
-#define UDR	  *(volatile U8 *const)0x2C
+//#define UDR	  *(volatile U8 *const)0x2C
 /*
 ** TXB/RXB[7:0]: USART Transmit / Receive Data Buffer.
 ** The USART Transmit Data Buffer Register and USART Receive Data Buffer Registers share the same I/O address referred to 
@@ -1369,7 +1356,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** UCSRA – USART Control and Status Register A
 */
-#define UCSRA	*(volatile U8 *const)0x2B
+//#define UCSRA	*(volatile U8 *const)0x2B
 /*
 ** RXC: USART Receive Complete
 ** This flag bit is set when there are unread data in the receive buffer and cleared when the receive buffer is empty 
@@ -1429,7 +1416,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** UCSRB – USART Control and Status Register B
 */
-#define UCSRB	*(volatile U8 *const)0x2A
+//#define UCSRB	*(volatile U8 *const)0x2A
 /*
 ** RXCIE: RX Complete Interrupt Enable
 ** Writing this bit to one enables interrupt on the RXC Flag. A USART Receive Complete interrupt will be generated only if 
@@ -1484,7 +1471,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** UCSRC – USART Control and Status Register C
 */
-#define UCSRC	*(volatile U8 *const)0x40
+//#define UCSRC	*(volatile U8 *const)0x40
 /*
 ** URSEL: Register Select
 ** This bit selects between accessing the UCSRC or the UBRRH Register. It is read as one when reading UCSRC. 
@@ -1541,7 +1528,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** UBRRL – USART Baud Rate Register Low
 */
-#define UBRRL	*(volatile U8 *const)0x29
+//#define UBRRL	*(volatile U8 *const)0x29
 /* 
 ** UBBR[7:0]: USART Baud Rate Register
 ** This is a 12-bit register which contains the USART baud rate. The UBRRH contains the four most significant bits, 
@@ -1560,7 +1547,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /* 
 ** TWBR – TWI Bit Rate Register
 */
-#define TWBR	*(volatile U8 *const)0x20
+//#define TWBR	*(volatile U8 *const)0x20
 #define TWBR7 	7
 #define TWBR6 	6
 #define TWBR5 	5
@@ -1574,7 +1561,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** TWCR – TWI Control Register
 */
-#define TWCR	*(volatile U8 *const)0x56
+//#define TWCR	*(volatile U8 *const)0x56
 #define TWINT 	7
 #define TWEA 	6
 #define TWSTA 	5
@@ -1587,7 +1574,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** TWSR – TWI Status Register
 */
-#define TWSR	*(volatile U8 *const)0x21
+//#define TWSR	*(volatile U8 *const)0x21
 #define TWS4 	7
 #define TWS3 	6
 #define TWS2 	5
@@ -1600,7 +1587,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** TWDR – TWI Data Register
 */
-#define TWDR	*(volatile U8 *const)0x23
+//#define TWDR	*(volatile U8 *const)0x23
 #define TWD7 	7
 #define TWD6	6
 #define TWD5 	5
@@ -1613,7 +1600,7 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 /*
 ** TWAR – TWI (Slave) Address Register
 */
-#define TWAR	*(volatile U8 *const)0x22
+//#define TWAR	*(volatile U8 *const)0x22
 #define TWA6 	7
 #define TWA5 	6
 #define TWA4 	5
@@ -1626,4 +1613,4 @@ on the Slave. The relationship between SCK and the Oscillator Clock frequency f 
 
 
 
-#endif /* AVRATMEGA32_H_ */
+#endif /* AVRATMEGA32_CONSTS_H_ */
